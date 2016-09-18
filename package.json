@@ -6,7 +6,8 @@
   "dependencies": {
     "express": "^4.14.0",
     "mongodb": "2.2.10",
-    "monk":"3.1.2"	
+    "monk": "3.1.2",
+    "rpi-gpio": "^0.7.0"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
@@ -36,7 +37,7 @@
     "jasmine-core": "^2.4.1",
     "jit-grunt": "^0.9.1",
     "jshint-stylish": "^1.0.0",
-    "time-grunt": "^1.0.0" 
+    "time-grunt": "^1.0.0"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -45,5 +46,5 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
- "author": "HomeBerry Group"
+  "author": "HomeBerry Group"
 }
