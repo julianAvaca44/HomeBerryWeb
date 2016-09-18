@@ -16,32 +16,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+				<tr ng-repeat="device in vm.entity">
 					<th scope="row">1</th>
-					<td>d1</td>
-					<td>n2</td>
-					<td>t2</td>
-					<td>z2</td>
-					<td>s0</td>
-					<td>p0</td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>d1</td>
-					<td>n2</td>
-					<td>t2</td>
-					<td>z2</td>
-					<td>s0</td>
-					<td>p0</td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td>d1</td>
-					<td>n2</td>
-					<td>t2</td>
-					<td>z2</td>
-					<td>s0</td>
-					<td>p0</td>
+					<td>{{device.id}}</td>
+					<td>{{device.nombre}}</td>
+					<td>{{device.tipo}}</td>
+					<td>{{device.zona}}</td>
+					<td>{{device.estado}}</td>
+					<td>{{device.pin}}</td>
 				</tr>
 			</tbody>
 		</table>

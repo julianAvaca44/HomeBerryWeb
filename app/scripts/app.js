@@ -43,7 +43,8 @@ angular
           url: '',
           views: {
               '@main': {
-                  templateUrl: "../views/home.html"
+                  templateUrl: "../views/home.html",
+                  controller: "HomeCtrl"
               }
             }
           })
@@ -51,7 +52,9 @@ angular
           url: '/devices',
           views: {
               '@main': {
-                  templateUrl: "../views/devices.html"
+                  templateUrl: "../views/devices.html",
+                  controller: "DevicesCtrl",
+                  controllerAs: "vm"
               }
             }
           });
