@@ -57,5 +57,15 @@ angular
                   controllerAs: "vm"
               }
             }
+          })
+        .state('main.zone', {
+          url: '/zones',
+          views: {
+              '@main': {
+                  templateUrl: "../views/zone.html",
+                  controller: "ZonesCtrl",
+                  controllerAs: "vm"
+              }
+            }
           });
   });

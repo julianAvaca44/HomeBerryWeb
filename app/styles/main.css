@@ -1,0 +1,56 @@
+md-toolbar{
+	background-color: black !important;
+}
+
+footer{
+	    background-color: #438bca !important;
+	    color: white !important;
+}
+
+#titleicon{
+  background-image: url("../images/iconHB.png");
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+#titleicon img{
+	background-position: 0 0;
+}
+
+.principal{
+	background-color: black !important;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.principal >div {
+	background-color: black !important;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.principal > div > h1 >  img{
+	position: relative !important;
+	top: 50% !important;
+	left:40% !important;
+}
+
+.menu-tablas{
+	display: block;
+}
+
+.menu-tablas-izq{
+	display: inline;
+	position: relative;
+	float: left;
+}
+
+.menu-tablas-der{
+	display: inline;
+	position: relative;
+	float:right;
+}
+
+.md-button.md-primary.md-raised{
+	background-color: #438bca;
+}
