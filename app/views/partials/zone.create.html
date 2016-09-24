@@ -1,0 +1,37 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Agregar Nueva Zona</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="vm.cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="container-mdDialog">
+        <form name="zoneForm">
+          <div layout="row" layout-align="center center">
+            <md-input-container  class="md-block">
+              <label>Nombre</label>
+              <input ng-model="vmDialog.name">
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Descripción</label>
+              <input ng-model="vmDialog.description">
+            </md-input-container>
+          </div>
+        </form>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="vmDialog.aceptar()">
+       Aceptar
+      </md-button>
+      <md-button ng-click="vmDialog.cancel()" style="margin-right:20px;">
+        Cancelar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
