@@ -11,7 +11,7 @@ var app = express();
 
 
 app.use(bodyParser());
-//app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname+ '/app'));
 app.use('/bower_components',express.static(__dirname+ '/bower_components'));
 // Make our db accessible to our router
@@ -26,6 +26,7 @@ console.log(express.static(__dirname));
 
 // escuchar
 app.listen(9003, function(){
+	console.log("Servidor Express escuchando 9003");
 	console.log("Servidor Express escuchando en modo %s", app.settings.env);
 	}); 
 

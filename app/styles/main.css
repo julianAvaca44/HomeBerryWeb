@@ -54,3 +54,27 @@ footer{
 .md-button.md-primary.md-raised{
 	background-color: #438bca;
 }
+
+
+.icon {
+	position: relative;
+	top:50%;
+	left:15%;
+	width: 24px;
+	height: 24px;
+	display: inline-block;
+	background-color: red;
+	-webkit-mask-image: url("../images/ic_delete_black_24px.svg");
+	mask-image: url("../images/ic_delete_black_24px.svg");
+	-webkit-mask-size: cover;
+	mask-size: cover;
+}
+
+.icon:hover{
+	background-color:rgba(235,0,0,0.72);
+}
+
+.icon:active{
+	position: relative;
+	top:3px;
+}

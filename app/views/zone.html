@@ -21,8 +21,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="device in vm.entity">
-					<th scope="row">1</th>
+				<tr ng-repeat="zone in vm.entity">
+					<td>{{zone.id}}</td>
+					<td>{{zone.name}}</td>
+					<td>{{zone.number}}</td>
+					<td>{{zone.description}}</td>
+					<td>{{zone.countOfDevices}}</td>
+					<td>
+						<div class="icon" ng-click="vm.deleteZone(zone)">
+							<!--span>
+								<md-icon md-svg-src="../images/ic_delete_black_24px.svg" class="s24" aria-label="Cake" ></md-icon>
+							</span-->
+						</div>
+					</td>
 				</tr>
 			</tbody>
 		</table>

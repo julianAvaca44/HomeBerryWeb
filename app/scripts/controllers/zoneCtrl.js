@@ -55,18 +55,34 @@ angular.module('hBwebApp')
         $http.post('/zone',{name:this.name,description:this.description}).then(function(response){
           console.log(self);
           console.log("ok POST");
+          $mdDialog.cancel();
+          self.getZone();
         }, function(err){
           console.log("Err: POST");
           console.log(err);
+          $mdDialog.cancel();
+          self.getZone();
         });
       };
     }
 
+    this.deleteZone = function(zone){
+      $http.delete('/zone/'+zone.id).then(function(response){
+        console.log(response);
+        self.getZone();
+      }, function(err){
+        console.log(err);
+      });
+    }
 
-    $http.get('/zone').then(function(response){
-			self.entity = response.data;
-			console.log(response);
-		}, function(err){
-			console.log(err);
-		});
+    this.getZone = function(){
+      $http.get('/zone').then(function(response){
+        self.entity = response.data;
+        console.log(response);
+      }, function(err){
+        console.log(err);
+      });  
+    };
+    this.getZone(); 
+    
   }]);
