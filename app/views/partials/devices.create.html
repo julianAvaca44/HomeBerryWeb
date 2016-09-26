@@ -1,0 +1,66 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Agregar Nuevo Dispositivo</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="vm.cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="container-mdDialog">
+        <form name="zoneForm">
+        <!--  INICIO DEL FORMULARIO  -->
+          <div layout="row" layout-align="space-around center">
+            <md-input-container  class="md-block">
+              <label>Nombre</label>
+              <input ng-model="vmDialog.entity.name">
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Tipo</label>
+              <md-select ng-model="vmDialog.entity.type">
+                <md-option ng-repeat="type in vm.types" value="{{type}}">
+                  {{type}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Zona</label>
+              <md-select ng-model="vmDialog.entity.zone">
+                <md-option ng-repeat="zone in vm.areas" value="{{zone.id}}">
+                  {{zone.name}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+
+          <div layout="row" layout-align="space-around center">
+            <md-input-container  class="md-block">
+              <label>Descripción</label>
+              <input ng-model="vmDialog.entity.description">
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Pin</label>
+              <md-select ng-model="vmDialog.entity.pin">
+                <md-option ng-repeat="pin in vm.pines" value="{{pin}}">
+                  {{pin}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <!--  FIN DEL FORMULARIO  -->
+        </form>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="vmDialog.aceptar()">
+       Aceptar
+      </md-button>
+      <md-button ng-click="vmDialog.cancel()" style="margin-right:20px;">
+        Cancelar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

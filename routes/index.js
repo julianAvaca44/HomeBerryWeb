@@ -13,6 +13,45 @@ router.get('/devices', function(req, res) {
     });
 });
 
+router.post('/devices', function(req, res) {
+    console.log("POST : devices");
+    var db = req.db;
+    var deviceName = req.body.name;
+    var deviceType = req.body.type;
+    var deviceZone = req.body.zone;
+    var devicePin = req.body.pin;
+    var deviceDescription = req.body.description;
+    var collection = db.get('devices');
+    var count = db.get('counterZone'); 
+    count.findOneAndUpdate(
+            { id: "devicesId" },
+            { $inc: { seq: 1 } },
+            {},
+            function (error, ret) {
+        var deviceNumber = ret.seq;
+        collection.insert({
+            "id":deviceZone+"D"+deviceNumber,
+            "name" : deviceName,
+            "description" : deviceDescription,
+            "number": deviceNumber,
+            "pin":devicePin,
+            "zone":deviceZone,
+            "type":deviceType,
+            "state":0
+        }, function (err, doc) {
+                if (err) {
+                    // If it failed, return error
+                    res.send("There was a problem adding the information to the database.");
+                    res.send(err);
+                }
+                else {
+                    // Return the object created
+                    res.send(doc);
+                }
+        });
+    });    
+});
+
 router.get('/devices/:id', function(req, res) {
     console.log("GET : devices/:%s",req.params.id);
     var db = req.db;
@@ -21,6 +60,22 @@ router.get('/devices/:id', function(req, res) {
         console.log(req.params.id);
         res.send(docs);
     });
+});
+
+router.delete('/devices/:id', function(req, res) {
+    console.log("DELETE : devices/:%s",req.params.id);
+    var db = req.db;
+    var collection = db.get('devices');
+    var count = db.get('counterZone'); 
+    count.findOneAndUpdate(
+            { id: "zoneId" },
+            { $inc: { seq: 0 } },//estaba en menos uno pero genera bug gigante!!
+            {},
+            function (error, ret) {
+                collection.remove({id:req.params.id},{},function(e,docs){
+                    res.send(docs);
+                });  
+            });   
 });
 
 router.get('/zone', function(req, res) {
@@ -65,6 +120,10 @@ router.post('/zone', function(req, res) {
     });    
 });
 
+router.put('/zone/:id', function(req, res) {
+    console.log("PUT : zone/:%s",req.params.id);
+});
+
 router.delete('/zone/:id', function(req, res) {
     console.log("DELETE : zone/:%s",req.params.id);
     var db = req.db;
@@ -72,7 +131,7 @@ router.delete('/zone/:id', function(req, res) {
     var count = db.get('counterZone'); 
     count.findOneAndUpdate(
             { id: "zoneId" },
-            { $inc: { seq: -1 } },
+            { $inc: { seq: 0 } },//estaba en menos uno pero genera bug gigante!!
             {},
             function (error, ret) {
                 collection.remove({id:req.params.id},{},function(e,docs){

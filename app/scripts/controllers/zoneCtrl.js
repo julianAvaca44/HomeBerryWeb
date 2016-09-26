@@ -14,8 +14,7 @@ angular.module('hBwebApp')
     console.log("estoy en Zone");
 
     this.status = '  ';
-  this.customFullscreen = false;
-
+    this.customFullscreen = false;
 
     this.showAdvanced = function(ev) {
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
