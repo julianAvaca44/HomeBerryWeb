@@ -1,47 +1,45 @@
-<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
-  <form>
+<md-dialog aria-label="Agregar Nuevo Dispositivo"  ng-cloak>
+  <form name="deviceForm">
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Agregar Nuevo Dispositivo</h2>
         <span flex></span>
-        <md-button class="md-icon-button" ng-click="vm.cancel()">
-          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        <md-button class="md-icon-button" ng-click="vmDialog.cancel()">
+          <md-icon md-svg-src="../../images/ic_close_white_64px.svg" aria-label="Close dialog"></md-icon>
         </md-button>
       </div>
     </md-toolbar>
     <md-dialog-content>
-      <div class="container-mdDialog">
-        <form name="zoneForm">
+      <div class="md-dialog-content">
         <!--  INICIO DEL FORMULARIO  -->
-          <div layout="row" layout-align="space-around center">
-            <md-input-container  class="md-block">
+          <div layout-gt-sm="row" layout-align="space-around center">
+            <md-input-container  class="md-block" flex-gt-sm>
               <label>Nombre</label>
-              <input ng-model="vmDialog.entity.name">
+              <input ng-model="vmDialog.entity.name" ng-required="true">
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container class="md-block" flex-gt-sm>
               <label>Tipo</label>
-              <md-select ng-model="vmDialog.entity.type">
+              <md-select ng-model="vmDialog.entity.type" required>
                 <md-option ng-repeat="type in vmDialog.typeDevices" value="{{type.name}}">
                   {{type.name}}
                 </md-option>
               </md-select>
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container class="md-block" flex-gt-sm>
               <label>Zona</label>
-              <md-select ng-model="vmDialog.entity.zone">
+              <md-select ng-model="vmDialog.entity.zone" required>
                 <md-option ng-repeat="zone in vmDialog.areas" value="{{zone.id}}">
                   {{zone.name}}
                 </md-option>
               </md-select>
             </md-input-container>
           </div>
-
-          <div layout="row" layout-align="space-around center">
-            <md-input-container  class="md-block">
+          <div layout-gt-sm="row" layout-align="space-around center">
+            <md-input-container  class="md-block" flex-gt-sm>
               <label>Descripción</label>
               <input ng-model="vmDialog.entity.description">
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container class="md-block" flex-gt-sm>
               <label>Pin</label>
               <md-select ng-model="vmDialog.entity.pin">
                 <md-option ng-repeat="pin in vmDialog.pines" value="{{pin}}">
@@ -50,15 +48,14 @@
               </md-select>
             </md-input-container>
           </div>
-          <!--  FIN DEL FORMULARIO  -->
-        </form>
+        <!--  FIN DEL FORMULARIO  --> 
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-      <md-button ng-click="vmDialog.aceptar()">
+      <md-button ng-click="vmDialog.aceptar(deviceForm)">
        Aceptar
       </md-button>
-      <md-button ng-click="vmDialog.cancel()" style="margin-right:20px;">
+      <md-button ng-click="vmDialog.cancel(deviceForm)" style="margin-right:20px;">
         Cancelar
       </md-button>
     </md-dialog-actions>

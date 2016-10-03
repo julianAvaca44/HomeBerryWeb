@@ -82,14 +82,16 @@ angular.module('hBwebApp')
         $mdDialog.hide();
       };
       
-      this.cancel = function() {
+      this.cancel = function(deviceForm) {
         console.log("cierro el dialog");
+        console.log(deviceForm);
+        this.entity = {};
         $mdDialog.cancel();
       };
       
-      this.aceptar = function(answer) {
+      this.aceptar = function(deviceForm) {
         //acaba el request con el post y recargar la lista
-        console.log(this.entity);
+        console.log(deviceForm);
         $http.post('/devices',this.entity).then(function(response){
           console.log(self);
           console.log("ok POST");
