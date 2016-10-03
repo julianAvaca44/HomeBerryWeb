@@ -21,15 +21,15 @@
             <md-input-container class="md-block">
               <label>Tipo</label>
               <md-select ng-model="vmDialog.entity.type">
-                <md-option ng-repeat="type in vm.types" value="{{type}}">
-                  {{type}}
+                <md-option ng-repeat="type in vmDialog.typeDevices" value="{{type.name}}">
+                  {{type.name}}
                 </md-option>
               </md-select>
             </md-input-container>
             <md-input-container class="md-block">
               <label>Zona</label>
               <md-select ng-model="vmDialog.entity.zone">
-                <md-option ng-repeat="zone in vm.areas" value="{{zone.id}}">
+                <md-option ng-repeat="zone in vmDialog.areas" value="{{zone.id}}">
                   {{zone.name}}
                 </md-option>
               </md-select>
@@ -44,7 +44,7 @@
             <md-input-container class="md-block">
               <label>Pin</label>
               <md-select ng-model="vmDialog.entity.pin">
-                <md-option ng-repeat="pin in vm.pines" value="{{pin}}">
+                <md-option ng-repeat="pin in vmDialog.pines" value="{{pin}}">
                   {{pin}}
                 </md-option>
               </md-select>

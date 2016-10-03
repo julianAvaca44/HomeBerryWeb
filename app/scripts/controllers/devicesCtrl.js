@@ -39,32 +39,7 @@ angular.module('hBwebApp')
       });
     };
 
-    function DialogController($scope, $mdDialog) {
-      this.entity = {};
-      this.hide = function() {
-        $mdDialog.hide();
-      };
-      
-      this.cancel = function() {
-        console.log("cierro el dialog");
-        $mdDialog.cancel();
-      };
-      
-      this.aceptar = function(answer) {
-        //acaba el request con el post y recargar la lista
-        $http.post('/devices',this.entity).then(function(response){
-          console.log(self);
-          console.log("ok POST");
-          $mdDialog.cancel();
-          self.getDevices();
-        }, function(err){
-          console.log("Err: POST");
-          console.log(err);
-          $mdDialog.cancel();
-          self.getDevices();
-        });
-      };
-    }
+
 
     this.deleteDevice = function(device){
       $http.delete('/devices/'+device.id).then(function(response){
@@ -83,6 +58,70 @@ angular.module('hBwebApp')
         console.log(err);
       });  
     }
-    this.getDevices();
-    
+    this.getDevices(); 
+
+    this.deleteZone = function(device){
+      $http.delete('/devices/'+device.id).then(function(response){
+        console.log(response);
+        self.getDevices();
+      }, function(err){
+        console.log(err);
+      });
+    }
+
+
+    /*
+    *
+    *Controller para el model Dialog
+    */
+    function DialogController($scope, $mdDialog) {
+      var that = this; 
+      this.entity = {};
+      
+      this.hide = function() {
+        $mdDialog.hide();
+      };
+      
+      this.cancel = function() {
+        console.log("cierro el dialog");
+        $mdDialog.cancel();
+      };
+      
+      this.aceptar = function(answer) {
+        //acaba el request con el post y recargar la lista
+        console.log(this.entity);
+        $http.post('/devices',this.entity).then(function(response){
+          console.log(self);
+          console.log("ok POST");
+          $mdDialog.cancel();
+          self.getDevices();
+        }, function(err){
+          console.log("Err: POST");
+          console.log(err);
+          $mdDialog.cancel();
+          self.getDevices();
+        });
+      };
+
+       this.getZone = function(){
+        $http.get('/zone').then(function(response){
+          that.areas = response.data;
+          console.log(response);
+        }, function(err){
+          console.log(err);
+        });  
+      };
+      this.getZone();
+
+      this.getTypeDevices = function(){
+        $http.get('/typeDevices').then(function(response){
+          that.typeDevices = response.data;
+          console.log(response);
+        }, function(err){
+          console.log(err);
+        });  
+      };
+      this.getTypeDevices();
+    }
+
   }]);

@@ -15,41 +15,8 @@ router.get('/devices', function(req, res) {
 
 router.post('/devices', function(req, res) {
     console.log("POST : devices");
-    var db = req.db;
-    var deviceName = req.body.name;
-    var deviceType = req.body.type;
-    var deviceZone = req.body.zone;
-    var devicePin = req.body.pin;
-    var deviceDescription = req.body.description;
-    var collection = db.get('devices');
-    var count = db.get('counterZone'); 
-    count.findOneAndUpdate(
-            { id: "devicesId" },
-            { $inc: { seq: 1 } },
-            {},
-            function (error, ret) {
-        var deviceNumber = ret.seq;
-        collection.insert({
-            "id":deviceZone+"D"+deviceNumber,
-            "name" : deviceName,
-            "description" : deviceDescription,
-            "number": deviceNumber,
-            "pin":devicePin,
-            "zone":deviceZone,
-            "type":deviceType,
-            "state":0
-        }, function (err, doc) {
-                if (err) {
-                    // If it failed, return error
-                    res.send("There was a problem adding the information to the database.");
-                    res.send(err);
-                }
-                else {
-                    // Return the object created
-                    res.send(doc);
-                }
-        });
-    });    
+    
+    getZone(req,res,postDevices);
 });
 
 router.get('/devices/:id', function(req, res) {
@@ -66,16 +33,25 @@ router.delete('/devices/:id', function(req, res) {
     console.log("DELETE : devices/:%s",req.params.id);
     var db = req.db;
     var collection = db.get('devices');
-    var count = db.get('counterZone'); 
+    var count = db.get('counterDevices'); 
     count.findOneAndUpdate(
-            { id: "zoneId" },
-            { $inc: { seq: 0 } },//estaba en menos uno pero genera bug gigante!!
+            { id: "deviceId" },
+            { $inc: { seq: -1 } },//estaba en menos uno pero genera bug gigante!!
             {},
             function (error, ret) {
                 collection.remove({id:req.params.id},{},function(e,docs){
                     res.send(docs);
                 });  
             });   
+});
+
+router.get('/typeDevices', function(req, res) {
+    console.log("GET : typeDevices");
+    var db = req.db;
+    var collection = db.get('typeDevices');
+    collection.find({},{},function(e,docs){
+        res.send(docs);
+    });
 });
 
 router.get('/zone', function(req, res) {
@@ -141,11 +117,73 @@ router.delete('/zone/:id', function(req, res) {
 });
 
 router.get('/zone/:id', function(req, res) {
-    var db = req.db;
-    var collection = db.get('zone');
-    collection.find({id:req.params.id},{},function(e,docs){
+    console.log("GET : zone/:id");
+    getZone(req, res , function(req,res,docs){
         res.send(docs);
     });
 });
+
+function getZone(req,res, callback){
+    var db = req.db;
+    var collection = db.get('zone');
+    console.log(req.method);
+    console.log("GET ZONE_ :ID:");
+    var idZone;
+    console.log(req.params.id);
+    if(req.method === 'POST'){
+        idZone = req.body.zone;
+    }else{
+        idZone = req.params.id;
+    }
+
+    collection.findOne({id:idZone},{},function(e,docs){
+        if(callback !== undefined){
+            callback(req,res,docs);
+        }
+        console.log("return");
+        return docs;
+    });
+}
+
+function postDevices(req,res,zone){
+    console.log("postDevices!!");
+    var db = req.db;
+    var deviceZoneId = zone.id;
+    var deviceZoneName = zone.name;
+    var deviceName = req.body.name;
+    var deviceType = req.body.type;
+    var devicePin = req.body.pin;
+    var deviceDescription = req.body.description;
+    var collection = db.get('devices');
+    var count = db.get('counterDevices'); 
+    count.findOneAndUpdate(
+            { id: "deviceId" },
+            { $inc: { seq: 1 } },
+            {},
+            function (error, ret) {
+        var deviceNumber = ret.seq;
+        collection.insert({
+            "id":deviceZoneId+"D"+deviceNumber,
+            "name" : deviceName,
+            "description" : deviceDescription,
+            "number": deviceNumber,
+            "pin":devicePin,
+            "zone":deviceZoneName,
+            "type":deviceType,
+            "state":0
+        }, function (err, doc) {
+                if (err) {
+                    // If it failed, return error
+                    res.send("There was a problem adding the information to the database.");
+                    res.send(err);
+                }
+                else {
+                    // Return the object created
+                    res.send(doc);
+                }
+        });
+    }); 
+}
+
 
 module.exports = router;
