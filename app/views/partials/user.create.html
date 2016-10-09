@@ -1,0 +1,56 @@
+<md-dialog aria-label="Agregar Nuevo Dispositivo"  ng-cloak>
+  <form name="deviceForm">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Agregar Nuevo Usuario</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="vmDialog.cancel()">
+          <md-icon md-svg-src="../../images/ic_close_white_64px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <!--  INICIO DEL FORMULARIO  -->
+          <div layout-gt-sm="row" layout-align="space-around center">
+            <md-input-container  class="md-block" flex-gt-sm>
+              <label>Nombre</label>
+              <input ng-model="vmDialog.entity.name" ng-required="true">
+            </md-input-container>
+            <md-input-container  class="md-block" flex-gt-sm>
+              <label>E-Mail</label>
+              <input ng-model="vmDialog.entity.mail" ng-required="true">
+            </md-input-container>
+            <md-input-container  class="md-block" flex-gt-sm>
+              <label>Telefono</label>
+              <input ng-model="vmDialog.entity.phone" ng-required="true">
+            </md-input-container>
+            
+          </div>
+          <div layout-gt-sm="row" layout-align="space-around center">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Perfil</label>
+              <md-select ng-model="vmDialog.entity.zone" required>
+                <md-option ng-repeat="zone in vmDialog.areas" value="{{zone.id}}">
+                  {{zone.name}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container  class="md-block" flex-gt-sm>
+              <label>DNI</label>
+              <input ng-model="vmDialog.entity.dni" ng-required="true">
+            </md-input-container>
+          </div>
+        <!--  FIN DEL FORMULARIO  --> 
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="vmDialog.aceptar(deviceForm)">
+       Aceptar
+      </md-button>
+      <md-button ng-click="vmDialog.cancel(deviceForm)" style="margin-right:20px;">
+        Cancelar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

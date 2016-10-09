@@ -58,6 +58,16 @@ angular
               }
             }
           })
+        .state('main.user', {
+          url: '/user',
+          views: {
+              '@main': {
+                  templateUrl: "../views/user.html",
+                  controller: "UserCtrl",
+                  controllerAs: "vm"
+              }
+            }
+          })
         .state('main.zone', {
           url: '/zones',
           views: {

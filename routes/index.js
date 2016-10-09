@@ -123,6 +123,71 @@ router.get('/zone/:id', function(req, res) {
     });
 });
 
+router.get('/user', function(req, res) {
+    var db = req.db;
+    var collection = db.get('user');
+    collection.find({},{},function(e,docs){
+        res.send(docs);
+    });
+});
+
+router.get('/user/:id', function(req, res) {
+    var db = req.db;
+    var collection = db.get('user');
+    collection.findOne({id:req.params.id},{},function(e,docs){
+        console.log(req.params.id);
+        res.send(docs);
+    });
+});
+
+router.delete('/user/:id', function(req, res) {
+    console.log("DELETE : user/:%s",req.params.id);
+    var db = req.db;
+    var collection = db.get('user');
+    collection.remove({dni:req.params.id},{},function(e,docs){
+        res.send(docs);
+    });  
+});
+
+router.put('/user/:id', function(req, res) {
+    var db = req.db;
+    var collection = db.get('user');
+    collection.find({},{},function(e,docs){
+        res.send(docs);
+    });
+});
+
+router.post('/user', function(req, res) {
+    var db = req.db;
+    var userDni = req.body.dni;
+    var userName = req.body.name;
+    var userMail = req.body.mail;
+    var userPhone = req.body.phone;
+    var userProfile = req.body.profile;
+    var userTc = req.body.tc;
+    var collection = db.get('user');
+    
+    collection.insert({
+        "dni" : userDni,
+        "name" : userName,
+        "mail" : userMail,
+        "phone": userPhone,
+        "profile":userProfile,
+        "tc":userTc
+    }, function (err, doc) {
+            if (err) {
+                // If it failed, return error
+                res.send("There was a problem adding the information to the database.");
+                res.send(err);
+            }
+            else {
+                // Return the object created
+                res.send(doc);
+            }
+    });
+});
+
+
 function getZone(req,res, callback){
     var db = req.db;
     var collection = db.get('zone');
