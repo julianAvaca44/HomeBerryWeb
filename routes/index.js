@@ -188,6 +188,32 @@ router.post('/user', function(req, res) {
 });
 
 
+router.get('/tc', function(req, res) {
+    var tc = {};
+    tc.id = "tc - "+Math.floor((Math.random() * 100000) + 1);;
+    tc.values = {};
+
+    for(i=0; i<=8;i++){
+        var letra = String.fromCharCode(65 + i);
+        for(j=1;j<10;j++){
+            var value = Math.floor((Math.random() * 100) + 1);
+            tc.values[letra + j] = value;
+        }
+    }
+    res.send(tc);
+        
+});
+
+router.get('/roles', function(req, res) {
+     console.log("GET : roles");
+    var db = req.db;
+    var collection = db.get('roles');
+    collection.find({},{},function(e,docs){
+        res.send(docs);
+    }); 
+});
+
+
 function getZone(req,res, callback){
     var db = req.db;
     var collection = db.get('zone');

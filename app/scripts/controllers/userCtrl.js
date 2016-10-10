@@ -34,30 +34,51 @@ angular.module('hBwebApp')
     };
 
     function DialogController($scope, $mdDialog) {
-      this.hide = function() {
-        $mdDialog.hide();
-      };
-      
-      this.cancel = function() {
-        console.log("cierro el dialog");
-        $mdDialog.cancel();
-      };
-      
-      this.aceptar = function(answer) {
-        //acaba el request con el post y recargar la lista
-        $http.post('/user',this.entity).then(function(response){
-          console.log(self);
-          console.log("ok POST");
-          $mdDialog.cancel();
-          self.getUser();
-        }, function(err){
-          console.log("Err: POST");
-          console.log(err);
-          $mdDialog.cancel();
-          self.getUser();
-        });
-        console.log("btn Acpetar");
-      };
+    	var that = this;
+    	this.entity = {}; 
+	    this.hide = function() {
+	        $mdDialog.hide();
+	    };
+	      
+	    this.cancel = function() {
+	        console.log("cierro el dialog");
+	        $mdDialog.cancel();
+	    };
+	      
+	    this.aceptar = function(answer) {
+	        //acaba el request con el post y recargar la lista
+	        $http.post('/user',this.entity).then(function(response){
+	          console.log(self);
+	          console.log("ok POST");
+	          $mdDialog.cancel();
+	          self.getUser();
+	        }, function(err){
+	          console.log("Err: POST");
+	          console.log(err);
+	          $mdDialog.cancel();
+	          self.getUser();
+	        });
+	        console.log("btn Acpetar");
+	      };
+
+	    this.generateTc = function(){
+	    	$http.get('/tc').then(function(response){
+	          that.entity.tc = response.data;
+	          console.log(response);
+	        }, function(err){
+	          console.log(err);
+	        });
+	    };
+
+	    this.getRoles = function(){
+	        $http.get('/roles').then(function(response){
+	          that.roles = response.data;
+	          console.log(response);
+	        }, function(err){
+	          console.log(err);
+	        });  
+	    };
+	    this.getRoles();
     }
 
     this.deleteUser = function(user){
@@ -79,5 +100,9 @@ angular.module('hBwebApp')
       console.log("getUser");  
     };
     this.getUser(); 
+
+    this.selectUser = function(user){
+    	this.selectedUser = user;
+    }
     
   }]);

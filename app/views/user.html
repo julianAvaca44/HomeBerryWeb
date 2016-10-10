@@ -7,7 +7,7 @@
 			 <md-button class="md-raised md-primary" ng-click="vm.showAdvanced($event)">Agregar</md-button>
 		</div>
 		<div class="menu-tablas-der">
-			 <md-button class="md-raised md-primary" ng-click="vm.showAdvanced($event)">Editar</md-button>
+			 <md-button class="md-raised md-primary" ng-click="vm.showAdvanced($event)" ng-disabled="!vm.selectedUser">Editar</md-button>
 		</div>
 	</div>
 
@@ -25,19 +25,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="user in vm.entity">
+				<tr ng-class="[user.dni==vm.selectedUser.dni?'row-select':'']" ng-repeat="user in vm.entity" ng-click="vm.selectUser(user)">
 					<td>{{user.dni}}</td>
 					<td>{{user.name}}</td>
 					<td>{{user.mail}}</td>
 					<td>{{user.phone}}</td>
 					<td>{{user.profile}}</td>
-					<td>{{user.number}}</td>
+					<td>{{user.tc.id}}</td>
 					<td>
 						<div class="icon" ng-click="vm.deleteUser(user)">
 						</div>
 					</td>
 				</tr>
-			</tbody>
+			</tbody>			
 		</table>
 	</div>
 </section>

@@ -1,4 +1,4 @@
-<md-dialog aria-label="Agregar Nuevo Dispositivo"  ng-cloak>
+<md-dialog class="form-user" aria-label="Agregar Nuevo Dispositivo"  ng-cloak>
   <form name="deviceForm">
     <md-toolbar>
       <div class="md-toolbar-tools">
@@ -12,34 +12,55 @@
     <md-dialog-content>
       <div class="md-dialog-content">
         <!--  INICIO DEL FORMULARIO  -->
-          <div layout-gt-sm="row" layout-align="space-around center">
-            <md-input-container  class="md-block" flex-gt-sm>
-              <label>Nombre</label>
-              <input ng-model="vmDialog.entity.name" ng-required="true">
-            </md-input-container>
-            <md-input-container  class="md-block" flex-gt-sm>
-              <label>E-Mail</label>
-              <input ng-model="vmDialog.entity.mail" ng-required="true">
-            </md-input-container>
-            <md-input-container  class="md-block" flex-gt-sm>
-              <label>Telefono</label>
-              <input ng-model="vmDialog.entity.phone" ng-required="true">
-            </md-input-container>
-            
+          
+          <div><h4>Datos del Usuario</h4></div>
+          <div class="line-division"></div>
+          <div>
+            <div layout-gt-sm="row" layout-align="space-around center">
+              <md-input-container  class="md-block" flex-gt-sm>
+                <label>Nombre</label>
+                <input ng-model="vmDialog.entity.name" ng-required="true">
+              </md-input-container>
+              <md-input-container  class="md-block" flex-gt-sm>
+                <label>DNI</label>
+                <input ng-model="vmDialog.entity.dni" ng-required="true">
+              </md-input-container>
+            </div>
           </div>
-          <div layout-gt-sm="row" layout-align="space-around center">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Perfil</label>
-              <md-select ng-model="vmDialog.entity.zone" required>
-                <md-option ng-repeat="zone in vmDialog.areas" value="{{zone.id}}">
-                  {{zone.name}}
-                </md-option>
-              </md-select>
-            </md-input-container>
-            <md-input-container  class="md-block" flex-gt-sm>
-              <label>DNI</label>
-              <input ng-model="vmDialog.entity.dni" ng-required="true">
-            </md-input-container>
+          <div>
+            <div layout-gt-sm="row" layout-align="space-around center">
+             <md-input-container  class="md-block" flex-gt-sm>
+                <label>E-Mail</label>
+                <input ng-model="vmDialog.entity.mail" type="email" ng-required="true">
+              </md-input-container>
+              <md-input-container  class="md-block" flex-gt-sm>
+                <label>Telefono</label>
+                <input ng-model="vmDialog.entity.phone" ng-required="true">
+              </md-input-container>
+            </div>
+          </div>
+          <div>
+            <div layout-gt-sm="row" layout-align="space-around center">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Perfil</label>
+                <md-select ng-model="vmDialog.entity.profile" required>
+                  <md-option ng-if="$index!=0" ng-repeat="rol in vmDialog.roles" value="{{rol.rol}}">
+                    {{rol.rol}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+          </div>
+          <div><h4>Tarjeta de Coordenadas</h4></div>
+          <div class="line-division"></div>  
+          <div>
+            <div layout-gt-sm="row" layout-align="space-around center">
+              <md-input-container  class="md-block" flex-gt-sm>
+                <label>Generar nueva TC</label>
+                <input ng-model="vmDialog.entity.tc.id" disabled="true" ng-required="true" style="display: inline;width: 65% !important;">
+                <md-button class="md-raised md-primary" ng-click="vmDialog.generateTc()">Generar</md-button>
+              </md-input-container>
+            </div>
           </div>
         <!--  FIN DEL FORMULARIO  --> 
       </div>
