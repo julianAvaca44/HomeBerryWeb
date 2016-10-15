@@ -1,0 +1,2 @@
+{"_id":{"$oid":"57f18c1037d36b1175c3b255"},"id":"Z1","name":"Baño","description":"Baño de servicio","number":1,"countOfDevices":0}
+{"_id":{"$oid":"57f18c2437d36b1175c3b256"},"id":"Z2","name":"Pieza","description":"Pieza de los padres","number":2,"countOfDevices":0}

@@ -1,0 +1,4 @@
+{"_id":{"$oid":"57f1c7e7d66ab124c4626de2"},"id":"Z1D1","name":"lamparita","description":"segunda lamparita","number":1,"pin":1,"zone":"Baño","type":"luz","state":0}
+{"_id":{"$oid":"57f1c9df3ce41d251a965598"},"id":"Z3D2","name":"seguridad","description":"seguridad","number":2,"pin":null,"zone":"Cocina","type":"camaraVideo","state":0}
+{"_id":{"$oid":"57f1c9fb3ce41d251a965599"},"id":"Z2D3","name":"seguridad","description":"caja de seguridad","number":3,"pin":null,"zone":"Pieza","type":"alarma","state":0}
+{"_id":{"$oid":"57f91ab75673830b54b45e30"},"id":"Z2D4","name":"agus puto","description":"agus se la re come","number":4,"pin":null,"zone":"Pieza","type":"luz","state":0}

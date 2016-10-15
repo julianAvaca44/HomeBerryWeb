@@ -1,0 +1,30 @@
+wlan0     Scan completed :
+          Cell 01 - Address: 3C:94:D5:38:1B:00
+                    Channel:11
+                    Frequency:2.462 GHz (Channel 11)
+                    Quality=30/70  Signal level=-80 dBm  
+                    Encryption key:on
+                    ESSID:"AP-LFU"
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 6 Mb/s; 9 Mb/s
+                              11 Mb/s; 12 Mb/s; 18 Mb/s
+                    Bit Rates:24 Mb/s; 36 Mb/s; 48 Mb/s; 54 Mb/s
+                    Mode:Master
+                    Extra:tsf=00000000420abdc3
+                    Extra: Last beacon: 105012ms ago
+                    IE: Unknown: 000641502D4C4655
+                    IE: Unknown: 010882848B0C12961824
+                    IE: Unknown: 03010B
+                    IE: Unknown: 0706415220010D10
+                    IE: Unknown: 0B0514005B0000
+                    IE: Unknown: 43020000
+                    IE: Unknown: 2A0100
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : TKIP
+                        Pairwise Ciphers (1) : TKIP
+                        Authentication Suites (1) : PSK
+                    IE: Unknown: 32043048606C
+                    IE: Unknown: DD22000B0E02000000000E0C02A204A40BA60CA612A716AB18A824AA30AD48B160B66CB8
+                    IE: Unknown: DD2E000B0E0306AF1C4E224A00D386AB0E1DB3B83FC347D20D1DBB679FB24B97FBD6109B449D84E5721D3CB0F7727281
+                    IE: Unknown: DD0E000B0E063E94D5381B000A0AC85D
+                    IE: Unknown: DD180050F2020101010003A4000027A4000042435E0062322F00
+
