@@ -68,6 +68,26 @@ angular
               }
             }
           })
+        .state('main.config', {
+          url: '/config',
+          views: {
+              '@main': {
+                  templateUrl: "../views/config.html",
+                  controller: "ConfigCtrl",
+                  controllerAs: "vm"
+              }
+            }
+          })
+        .state('main.state', {
+          url: '/state',
+          views: {
+              '@main': {
+                  templateUrl: "../views/state.html",
+                  controller: "StateCtrl",
+                  controllerAs: "vm"
+              }
+            }
+          })
         .state('main.zone', {
           url: '/zones',
           views: {

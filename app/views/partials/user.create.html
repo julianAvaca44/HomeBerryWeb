@@ -19,7 +19,11 @@
             <div layout-gt-sm="row" layout-align="space-around center">
               <md-input-container  class="md-block" flex-gt-sm>
                 <label>Nombre</label>
-                <input ng-model="vmDialog.entity.name" ng-required="true">
+                <input ng-model="vmDialog.entity.nombre" ng-required="true">
+              </md-input-container>
+              <md-input-container  class="md-block" flex-gt-sm>
+                <label>Apellido</label>
+                <input ng-model="vmDialog.entity.apellido" ng-required="true">
               </md-input-container>
               <md-input-container  class="md-block" flex-gt-sm>
                 <label>DNI</label>
@@ -35,7 +39,7 @@
               </md-input-container>
               <md-input-container  class="md-block" flex-gt-sm>
                 <label>Telefono</label>
-                <input ng-model="vmDialog.entity.phone" ng-required="true">
+                <input ng-model="vmDialog.entity.telefono" ng-required="true">
               </md-input-container>
             </div>
           </div>
@@ -43,7 +47,7 @@
             <div layout-gt-sm="row" layout-align="space-around center">
               <md-input-container class="md-block" flex-gt-sm>
                 <label>Perfil</label>
-                <md-select ng-model="vmDialog.entity.profile" required>
+                <md-select ng-model="vmDialog.entity.perfil" required>
                   <md-option ng-if="$index!=0" ng-repeat="rol in vmDialog.roles" value="{{rol.rol}}">
                     {{rol.rol}}
                   </md-option>

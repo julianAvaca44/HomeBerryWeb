@@ -1,7 +1,86 @@
 /*Routes*/
 var express = require('express');
+var exec = require('child_process').exec;
+var fs = require('fs');
 var bodyParser = require('body-parser');
 var router = express.Router();
+
+/* GET home page. */
+router.get('/listWifi', function(req, res) {
+    console.log("GET : listWifi");
+    var command = 'iwlist wlan0 scan';
+     
+
+     child = exec(command,
+      function (error, stdout, stderr) {
+        // nodejs error
+        if (error !== null) {
+          console.log('exec errosr: ' + error);
+          res.send(error);
+        }
+        else {
+          // save stdout to csv file
+          fs.writeFile('example.csv', stdout, function (err) {
+            if (err) {
+              console.log(err);
+              res.send(err);
+            }
+            else {
+                var re = new RegExp('ESSID:"([a-zA-Z0-9]+)"',"gim");
+                var match = {network:[]}; 
+                var aux = re.exec(stdout);
+                while(aux !== null){
+                    console.log(match.network);
+                    match.network.push(aux[1]);
+                    aux = re.exec(stdout);
+                }
+
+                res.send(match);
+                console.log('Saved!');
+            }
+          });
+        }
+      });     
+});
+
+
+router.post('/conect', function(req, res) {
+    console.log("POST : conect");
+    console.log(req.body);
+    var password = req.body.password;
+    var essid = req.body.essid;
+    var command = 'sudo iwconfig wlan0 essid '+ essid +' key s:'+ password +'';
+    
+    child = exec(command,
+      function (error, stdout, stderr) {
+        // nodejs error
+        if (error !== null) {
+          console.log('exec errosr: ' + error);
+          res.send(error);
+        }
+        else {
+          // save stdout to csv file
+          fs.writeFile('example.csv', stdout, function (err) {
+            if (err) {
+              console.log(err);
+              res.send(err);
+            }
+            else {
+                //que hago una vez q configura --- dhclient wlan0
+                console.log("CONFIGURE VOY A PEDIR LA IP");
+                child2 = exec('sudo dhclient wlan0', function (error, stdout, stderr) {
+                    if (error !== null) {
+                      console.log('exec errosr: ' + error);
+                      res.send(error);
+                    }
+                });
+            }
+          });
+        }
+      });     
+});
+
+
 
 /* GET home page. */
 router.get('/devices', function(req, res) {
@@ -160,20 +239,28 @@ router.put('/user/:id', function(req, res) {
 router.post('/user', function(req, res) {
     var db = req.db;
     var userDni = req.body.dni;
-    var userName = req.body.name;
+    var userNombre = req.body.nombre;
+    var userApellido = req.body.apellido;
     var userMail = req.body.mail;
-    var userPhone = req.body.phone;
-    var userProfile = req.body.profile;
+    var userTelefono = req.body.telefono;
+    var userPerfil = req.body.perfil;
+    var userWifi = req.body.wifi;
+    var userNombreWifi = req.body.nombreWifi;
+    var userAccionadoSensor = req.body.accionadoSensor;
     var userTc = req.body.tc;
     var collection = db.get('user');
     
     collection.insert({
         "dni" : userDni,
-        "name" : userName,
+        "nombre" : userNombre,
+        "apellido" : userApellido,
         "mail" : userMail,
-        "phone": userPhone,
-        "profile":userProfile,
-        "tc":userTc
+        "telefono": userTelefono,
+        "perfil":userPerfil,
+        "tc":userTc,
+        "wifi": userWifi,
+        "nombreWifi": userNombreWifi,
+        "accionadoSensor": userAccionadoSensor
     }, function (err, doc) {
             if (err) {
                 // If it failed, return error
@@ -213,6 +300,23 @@ router.get('/roles', function(req, res) {
     }); 
 });
 
+router.get('/state', function(req, res) {
+     console.log("GET : state");
+    var db = req.db;
+    var collection = db.get('state');
+    collection.find({},{},function(e,docs){
+        res.send(docs);
+    }); 
+});
+
+router.delete('/state/:nombre', function(req, res) {
+    console.log("DELETE : state/:%s",req.params.nombre);
+    var db = req.db;
+    var collection = db.get('state');
+    collection.remove({nombre:req.params.nombre},{},function(e,docs){
+        res.send(docs);
+    });  
+});
 
 function getZone(req,res, callback){
     var db = req.db;
