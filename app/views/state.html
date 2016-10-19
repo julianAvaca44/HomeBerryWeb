@@ -20,9 +20,10 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="state in vm.entity">
-					<td>{{state.id}}</td>
+					<td>{{state.nombre}}</td>
+					<td>{{state.descripcion}}</td>
 					<td>
-						<div class="icon" ng-click="vm.deleteZone(zone)">
+						<div class="icon" ng-click="vm.deleteState(state)">
 						</div>
 					</td>
 				</tr>

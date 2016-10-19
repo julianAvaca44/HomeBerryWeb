@@ -51,7 +51,7 @@ angular.module('hBwebApp')
       
       this.aceptar = function(answer) {
         //acaba el request con el post y recargar la lista
-        $http.post('/zone',{name:this.name,description:this.description}).then(function(response){
+        $http.post('/zone',{nombre:this.nombre,descripcion:this.descripcion}).then(function(response){
           console.log(self);
           console.log("ok POST");
           $mdDialog.cancel();

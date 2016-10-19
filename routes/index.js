@@ -108,6 +108,16 @@ router.get('/devices/:id', function(req, res) {
     });
 });
 
+router.get('/devicesForZona/:zona', function(req, res) {
+    console.log("GET : devicesForZona/: %s",req.params.zona);
+    var db = req.db;
+    var collection = db.get('devices');
+    collection.find({zona:req.params.zona},{},function(e,docs){
+        console.log(req.params.zona);
+        res.send(docs);
+    });
+});
+
 router.delete('/devices/:id', function(req, res) {
     console.log("DELETE : devices/:%s",req.params.id);
     var db = req.db;
@@ -145,8 +155,8 @@ router.get('/zone', function(req, res) {
 router.post('/zone', function(req, res) {
     console.log("POST : zone");
     var db = req.db;
-    var zoneName = req.body.name;
-    var zoneDescription = req.body.description;
+    var zonaNombre = req.body.nombre;
+    var zonaDescripcion = req.body.descripcion;
     var collection = db.get('zone');
     var count = db.get('counterZone'); 
     count.findOneAndUpdate(
@@ -154,13 +164,13 @@ router.post('/zone', function(req, res) {
             { $inc: { seq: 1 } },
             {},
             function (error, ret) {
-        var zoneNumber = ret.seq;
+        var zonaNumero = ret.seq;
         collection.insert({
-            "id":"Z"+zoneNumber,
-            "name" : zoneName,
-            "description" : zoneDescription,
-            "number": zoneNumber,
-            "countOfDevices":0
+            "id":"Z"+zonaNumero,
+            "nombre" : zonaNombre,
+            "descripcion" : zonaDescripcion,
+            "numero": zonaNumero,
+            "cantDevices":0
         }, function (err, doc) {
                 if (err) {
                     // If it failed, return error
@@ -309,6 +319,30 @@ router.get('/state', function(req, res) {
     }); 
 });
 
+router.post('/state', function(req, res) {
+    console.log("POST : state");
+     var db = req.db;
+    var stateNombre = req.body.nombre;
+    var stateDescripcion = req.body.descripcion;
+    var collection = db.get('state');
+    
+    collection.insert({
+        "nombre" : stateNombre,
+        "descripcion":stateDescripcion,
+    }, function (err, doc) {
+            if (err) {
+                // If it failed, return error
+                res.send("There was a problem adding the information to the database.");
+                res.send(err);
+            }
+            else {
+                // Return the object created
+                res.send(doc);
+            }
+    });
+});
+
+
 router.delete('/state/:nombre', function(req, res) {
     console.log("DELETE : state/:%s",req.params.nombre);
     var db = req.db;
@@ -323,15 +357,15 @@ function getZone(req,res, callback){
     var collection = db.get('zone');
     console.log(req.method);
     console.log("GET ZONE_ :ID:");
-    var idZone;
+    var idZona;
     console.log(req.params.id);
     if(req.method === 'POST'){
-        idZone = req.body.zone;
+        idZona = req.body.zona;
     }else{
-        idZone = req.params.id;
+        idZona = req.params.id;
     }
 
-    collection.findOne({id:idZone},{},function(e,docs){
+    collection.findOne({id:idZona},{},function(e,docs){
         if(callback !== undefined){
             callback(req,res,docs);
         }
@@ -343,29 +377,31 @@ function getZone(req,res, callback){
 function postDevices(req,res,zone){
     console.log("postDevices!!");
     var db = req.db;
-    var deviceZoneId = zone.id;
-    var deviceZoneName = zone.name;
-    var deviceName = req.body.name;
-    var deviceType = req.body.type;
+    console.log(zone);
+    var deviceZonaId = zone.id;
+    var deviceZonaNombre = zone.nombre;
+    var deviceNombre = req.body.nombre;
+    var deviceTipo = req.body.tipo;
     var devicePin = req.body.pin;
-    var deviceDescription = req.body.description;
+    var deviceDescripcion = req.body.descripcion;
     var collection = db.get('devices');
     var count = db.get('counterDevices'); 
+    console.log("porGrabar!!");
     count.findOneAndUpdate(
             { id: "deviceId" },
             { $inc: { seq: 1 } },
             {},
             function (error, ret) {
-        var deviceNumber = ret.seq;
+        var deviceNumero = ret.seq;
         collection.insert({
-            "id":deviceZoneId+"D"+deviceNumber,
-            "name" : deviceName,
-            "description" : deviceDescription,
-            "number": deviceNumber,
+            "id":deviceZonaId+"D"+deviceNumero,
+            "nombre" : deviceNombre,
+            "descripcion" : deviceDescripcion,
+            "numero": deviceNumero,
             "pin":devicePin,
-            "zone":deviceZoneName,
-            "type":deviceType,
-            "state":0
+            "zona":deviceZonaNombre,
+            "tipo":deviceTipo,
+            "estado":0
         }, function (err, doc) {
                 if (err) {
                     // If it failed, return error

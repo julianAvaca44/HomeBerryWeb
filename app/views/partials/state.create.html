@@ -20,34 +20,33 @@
 	            <label>Nombre</label>
 	            <input ng-model="vmDialog.entity.nombre" ng-required="true">
 	          </md-input-container>
+            <md-input-container  class="md-block" flex=40>
+              <label>Descripción</label>
+              <input ng-model="vmDialog.entity.descripcion" ng-required="true">
+            </md-input-container>
 	        </div>
           <div><h4>Configuración del Estado</h4></div>
           <div class="line-division"></div>
         <div layout-gt-sm="row" layout-align="space-around center">  
         	<md-input-container class="md-block" flex-gt-sm>
                 <label>Zonas</label>
-                <md-select ng-model="vmDialog.entity.perfil" required>
-                  <md-option>
-                    ZONAS
-                  </md-option>
+                <md-select ng-disabled="!vmDialog.entity.nombre" ng-model="vmDialog.entity.zona" ng-change="vmDialog.getDevicesForZona()" required>
+                  <md-option ng-repeat="zone in vmDialog.areas" value="{{zone.nombre}}">
+                  {{zone.nombre}}
+                </md-option>
                 </md-select>
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm>
                 <label>Dispositivos</label>
-                <md-select ng-model="vmDialog.entity.perfil" required>
-                  <md-option>
-                    DISPOSITIVOS
+                <md-select ng-model="vmDialog.entity.device" ng-disabled="!vmDialog.entity.zona" required>
+                  <md-option ng-repeat="device in vmDialog.devicesForZona" value="{{device.id}}">
+                    {{device.id}}
                   </md-option>
                 </md-select>
-            </md-input-container>
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Estado</label>
-                <md-select ng-model="vmDialog.entity.perfil" required>
-                  <md-option>
-                    ACTIVADO
-                  </md-option>
-                </md-select>
-            </md-input-container>
+            </md-input-container>            
+            <md-checkbox ng-disabled="!vmDialog.entity.zona" ng-model="vmDialog.entity.estado" aria-label="Checkbox 1">
+        		Estado: {{ vmDialog.entity.estado?'Activado':'Desactivado' }}
+      		</md-checkbox>
         </div>
         <div layout-gt-sm="row" layout-align="space-around center">  
         	<md-button>

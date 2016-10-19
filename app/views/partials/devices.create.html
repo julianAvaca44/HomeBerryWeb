@@ -15,21 +15,21 @@
           <div layout-gt-sm="row" layout-align="space-around center">
             <md-input-container  class="md-block" flex-gt-sm>
               <label>Nombre</label>
-              <input ng-model="vmDialog.entity.name" ng-required="true">
+              <input ng-model="vmDialog.entity.nombre" ng-required="true">
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm>
               <label>Tipo</label>
-              <md-select ng-model="vmDialog.entity.type" required>
-                <md-option ng-repeat="type in vmDialog.typeDevices" value="{{type.name}}">
+              <md-select ng-model="vmDialog.entity.tipo" required>
+                <md-option ng-repeat="type in vmDialog.tipoDevices" value="{{type.name}}">
                   {{type.name}}
                 </md-option>
               </md-select>
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm>
               <label>Zona</label>
-              <md-select ng-model="vmDialog.entity.zone" required>
+              <md-select ng-model="vmDialog.entity.zona" required>
                 <md-option ng-repeat="zone in vmDialog.areas" value="{{zone.id}}">
-                  {{zone.name}}
+                  {{zone.nombre}}
                 </md-option>
               </md-select>
             </md-input-container>
@@ -37,7 +37,7 @@
           <div layout-gt-sm="row" layout-align="space-around center">
             <md-input-container  class="md-block" flex-gt-sm>
               <label>Descripción</label>
-              <input ng-model="vmDialog.entity.description">
+              <input ng-model="vmDialog.entity.descripcion">
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm>
               <label>Pin</label>

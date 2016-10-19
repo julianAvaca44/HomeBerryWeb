@@ -40,7 +40,26 @@ angular.module('hBwebApp')
       });
     };
 
+    this.getState = function(){
+    	$http.get('/state').then(function(response){
+        self.entity = response.data;
+        console.log(response);
+      }, function(err){
+        console.log(err);
+      });
+    }
+    this.getState();
+    this.deleteState = function(state){
+      $http.delete('/state/'+state.nombre).then(function(response){
+        console.log(response);
+        self.getState();
+      }, function(err){
+        console.log(err);
+      });
+    }
+
     function DialogController($scope, $mdDialog) {
+    	var that = this;
       this.hide = function() {
         $mdDialog.hide();
       };
@@ -52,9 +71,39 @@ angular.module('hBwebApp')
       
       this.aceptar = function(answer) {
         //acaba el request con el post y recargar la lista
-        $mdDialog.cancel();
-
+         $http.post('/state',this.entity).then(function(response){
+          console.log(self);
+          console.log("ok POST");
+          $mdDialog.cancel();
+          self.getState();
+        }, function(err){
+          console.log("Err: POST");
+          console.log(err);
+          $mdDialog.cancel();
+          self.getState();
+        });
       };
+
+      this.getZone = function(){
+        $http.get('/zone').then(function(response){
+          that.areas = response.data;
+          console.log(response);
+        }, function(err){
+          console.log(err);
+        });  
+      };
+      this.getZone();
+
+      this.getDevicesForZona = function(){
+      	console.log(that.entity.zona);
+      	$http.get('/devicesForZona/'+that.entity.zona).then(function(response){
+          that.devicesForZona = response.data;
+          console.log(response);
+        }, function(err){
+          console.log(err);
+        });
+      }
+
     }
 
 

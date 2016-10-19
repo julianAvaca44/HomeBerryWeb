@@ -117,7 +117,7 @@ angular.module('hBwebApp')
 
       this.getTypeDevices = function(){
         $http.get('/typeDevices').then(function(response){
-          that.typeDevices = response.data;
+          that.tipoDevices = response.data;
           console.log(response);
         }, function(err){
           console.log(err);
