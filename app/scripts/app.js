@@ -97,5 +97,25 @@ angular
                   controllerAs: "vm"
               }
             }
+          })
+        .state('main.manual', {
+          url: '/manual',
+          views: {
+              '@main': {
+                  templateUrl: "../views/manual.html",
+                  controller: "ManualCtrl",
+                  controllerAs: "vm"
+              }
+            }
+          })
+        .state('main.about', {
+          url: '/acercade',
+          views: {
+              '@main': {
+                  templateUrl: "../views/about.html",
+                  controller: "AboutCtrl",
+                  controllerAs: "vm"
+              }
+            }
           });
   });

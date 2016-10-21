@@ -1,28 +1,26 @@
 wlan0     Scan completed :
-          Cell 01 - Address: 80:2A:A8:4A:08:36
+          Cell 01 - Address: 00:23:69:AD:55:94
                     Channel:6
                     Frequency:2.437 GHz (Channel 6)
-                    Quality=70/70  Signal level=-32 dBm  
+                    Quality=59/70  Signal level=-51 dBm  
                     Encryption key:on
-                    ESSID:"redbee"
-                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 6 Mb/s
-                              9 Mb/s; 12 Mb/s; 18 Mb/s
-                    Bit Rates:24 Mb/s; 36 Mb/s; 48 Mb/s; 54 Mb/s
+                    ESSID:"null2"
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 18 Mb/s
+                              24 Mb/s; 36 Mb/s; 54 Mb/s
+                    Bit Rates:6 Mb/s; 9 Mb/s; 12 Mb/s; 48 Mb/s
                     Mode:Master
-                    Extra:tsf=000000012dcd1bd2
-                    Extra: Last beacon: 20708ms ago
-                    IE: Unknown: 0006726564626565
-                    IE: Unknown: 010882848B960C121824
+                    Extra:tsf=00000035a4e1fb21
+                    Extra: Last beacon: 87880ms ago
+                    IE: Unknown: 00056E756C6C32
+                    IE: Unknown: 010882848B962430486C
                     IE: Unknown: 030106
-                    IE: Unknown: 2A0100
-                    IE: Unknown: 32043048606C
-                    IE: Unknown: 2D1AAC011BFFFFFF0000000000000000000100000000000000000000
-                    IE: Unknown: 3D1606000D00000000000000000000000000000000000000
-                    IE: Unknown: 7F080000000000000040
-                    IE: Unknown: DD180050F2020101000003A4000027A4000042435E0062322F00
-                    IE: Unknown: DD0900037F01010000FF7F
+                    IE: Unknown: 2A0104
+                    IE: Unknown: 2F0104
                     IE: IEEE 802.11i/WPA2 Version 1
                         Group Cipher : CCMP
                         Pairwise Ciphers (1) : CCMP
                         Authentication Suites (1) : PSK
+                    IE: Unknown: 32040C121860
+                    IE: Unknown: DD7E0050F204104A0001101044000102103B00010310470010138140001DD211B29FFFC67E816B4BFB102100074C696E6B73797310230006526F7574657210240007575254353447321042000C43535630314A344E303530371054000800060050F204000110110011576972656C6573732D4720526F75746572100800020084
+                    IE: Unknown: DD090010180201F4000000
 

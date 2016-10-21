@@ -56,9 +56,14 @@ angular.module('hBwebApp')
       }, function(err){
         console.log(err);
       });
-    }
+    };
 
+    //ANOTHER CONTROLLER ----------------------------------------*************************!!
     function DialogController($scope, $mdDialog) {
+    	this.entity = {};
+    	this.entity.configEstado=[];
+    	this.configState=[];
+    	this.showBtnNew = true;
     	var that = this;
       this.hide = function() {
         $mdDialog.hide();
@@ -68,6 +73,32 @@ angular.module('hBwebApp')
         console.log("cierro el dialog");
         $mdDialog.cancel();
       };
+
+      this.newDivece = function(){
+    	if(!this.configState){
+    		return false;	
+    	}
+    	var confDevice ={
+    		device:'',
+    		estado:false
+    	};
+    	this.configState.push(confDevice);
+    	this.showBtnNew = false;
+    };
+
+	this.addDeviceToState = function(confDevice){
+		if(!this.entity || !confDevice){
+			return false;
+		}
+		confDevice.exist = true;
+		this.showBtnNew = true;
+		this.entity.configEstado.push(confDevice);
+    };
+
+	this.deleteConf = function(index){
+	    	this.entity.configEstado.splice(index, 1);
+	        this.configState.splice(index, 1);
+	};
       
       this.aceptar = function(answer) {
         //acaba el request con el post y recargar la lista
@@ -94,9 +125,9 @@ angular.module('hBwebApp')
       };
       this.getZone();
 
-      this.getDevicesForZona = function(){
+      this.getDevicesForZona = function(zona){
       	console.log(that.entity.zona);
-      	$http.get('/devicesForZona/'+that.entity.zona).then(function(response){
+      	$http.get('/devicesForZona/'+zona).then(function(response){
           that.devicesForZona = response.data;
           console.log(response);
         }, function(err){

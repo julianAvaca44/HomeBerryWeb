@@ -324,11 +324,19 @@ router.post('/state', function(req, res) {
      var db = req.db;
     var stateNombre = req.body.nombre;
     var stateDescripcion = req.body.descripcion;
+    console.log(req.body);
+    var stateConfigEstado = req.body.configEstado;
+    var stateCant = req.body.configEstado.length;
+    //validar que el nombre no exista antes de guardar
+
+
     var collection = db.get('state');
     
     collection.insert({
         "nombre" : stateNombre,
         "descripcion":stateDescripcion,
+        "configEstado" : stateConfigEstado,
+        "cantDevices" : stateCant
     }, function (err, doc) {
             if (err) {
                 // If it failed, return error
