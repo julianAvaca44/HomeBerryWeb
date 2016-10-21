@@ -1,7 +1,12 @@
 <section>
 	<div class="menu-tablas">
 		<div class="menu-tablas-izq">
-			<h3>Usuarios y Perfiles</h3>
+			<div class="menu-tablas-izq">
+				<div class="icon-lg icon-profile icon-black"></div>
+			</div>
+			<div class="menu-tablas-der">
+				<h3><span>Usuarios y Perfiles</span></h3>	
+			</div>
 		</div>
 		<div class="menu-tablas-der">
 			 <md-button class="md-raised md-primary" ng-click="vm.showAdvanced($event)">Agregar</md-button>
@@ -9,9 +14,10 @@
 		<div class="menu-tablas-der">
 			 <md-button class="md-raised md-primary" ng-click="vm.showAdvanced($event)" ng-disabled="!vm.selectedUser">Editar</md-button>
 		</div>
+		<div style="clear:both;"></div>
 	</div>
-
-	<div>
+	<div class="line-division"></div>
+	<div class="body-view">
 		<table class="table table-striped table-hover">
 			<thead class="thead-inverse">
 				<tr>
@@ -35,7 +41,7 @@
 					<td>{{user.perfil}}</td>
 					<td>{{user.tc.id}}</td>
 					<td>
-						<div class="icon" ng-click="vm.deleteUser(user)">
+						<div class="icon icon-delete icon-red" ng-click="vm.deleteUser(user)">
 						</div>
 					</td>
 				</tr>

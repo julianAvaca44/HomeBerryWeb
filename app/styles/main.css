@@ -50,9 +50,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	height:112px; 
 	width: 318px;
 }
-
+.body-view{
+	margin-top: 4%;
+}
 .menu-tablas{
 	display: block;
+	margin-top: 3%;
 }
 
 .menu-tablas-izq{
@@ -60,6 +63,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	position: relative;
 	float: left;
 }
+
 
 .menu-tablas-der{
 	display: inline;
@@ -71,19 +75,70 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	background-color: #438bca;
 }
 
-
-.icon {
+.icon{
 	position: relative;
 	top:50%;
 	left:15%;
 	width: 24px;
 	height: 24px;
 	display: inline-block;
-	background-color: red;
+	mask-size: cover;
+}
+
+.icon-lg{
+	position: relative;
+	top:50%;
+	width: 48px;
+	height: 48px;
+	display: inline-block;
+	mask-size: cover;
+}
+
+
+.icon-delete {
 	-webkit-mask-image: url("../images/ic_delete_black_24px.svg");
 	mask-image: url("../images/ic_delete_black_24px.svg");
 	-webkit-mask-size: cover;
-	mask-size: cover;
+}
+
+.icon-device {
+	-webkit-mask-image: url("../images/ic_wb_incandescent_white_24px.svg");
+	mask-image: url("../images/ic_wb_incandescent_white_24px.svg");
+	-webkit-mask-size: cover;
+}
+
+.icon-profile {
+	-webkit-mask-image: url("../images/ic_group_white_24px.svg");
+	mask-image: url("../images/ic_group_white_24px.svg");
+	-webkit-mask-size: cover;
+}
+
+.icon-zone {
+	-webkit-mask-image: url("../images/ic_pin_drop_white_24px.svg");
+	mask-image: url("../images/ic_pi_drop_white_24px.svg");
+	-webkit-mask-size: cover;
+}
+
+.icon-build {
+	-webkit-mask-image: url("../images/ic_build_white_18px.svg");
+	mask-image: url("../images/ic_build_white_24px.svg");
+	-webkit-mask-size: cover;
+}
+
+.icon-red{
+	background-color: red;
+}
+
+.icon-black{
+	background-color: black;
+}
+
+.icon-white{
+	background-color: white;
+}
+
+.icon-green{
+	background-color: green;
 }
 
 .icon:hover{

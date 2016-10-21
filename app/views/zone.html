@@ -1,14 +1,20 @@
 <section>
 	<div class="menu-tablas">
 		<div class="menu-tablas-izq">
-			<h3>Zonas</h3>
+			<div class="menu-tablas-izq">
+				<div class="icon-lg icon-zone icon-black"></div>
+			</div>
+			<div class="menu-tablas-der">
+				<h3><span>Zonas</span></h3>	
+			</div>
 		</div>
 		<div class="menu-tablas-der">
 			 <md-button class="md-raised md-primary" ng-click="vm.showAdvanced($event)">Agregar</md-button>
 		</div>
+		<div style="clear:both;"></div>
 	</div>
-
-	<div>
+	<div class="line-division"></div>
+	<div class="body-view">
 		<table class="table table-striped table-hover">
 			<thead class="thead-inverse">
 				<tr>
@@ -28,7 +34,7 @@
 					<td>{{zone.descripcion}}</td>
 					<td>{{zone.cantDevices}}</td>
 					<td>
-						<div class="icon" ng-click="vm.deleteZone(zone)">
+						<div class="icon-delete" ng-click="vm.deleteZone(zone)">
 						</div>
 					</td>
 				</tr>

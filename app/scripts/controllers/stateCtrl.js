@@ -49,6 +49,7 @@ angular.module('hBwebApp')
       });
     }
     this.getState();
+    
     this.deleteState = function(state){
       $http.delete('/state/'+state.nombre).then(function(response){
         console.log(response);
