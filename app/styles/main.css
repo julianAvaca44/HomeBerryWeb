@@ -85,11 +85,48 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	mask-size: cover;
 }
 
+.icon-device-on{
+	left:7%;
+	background-color:#ffc107 !important;
+}
+
+.icon-device-on:hover{
+	background-color:#ffc107 !important;
+}
+
+.icon-device-off{
+	left:7%;
+	background-color:#607d8b !important;
+}
+
+.icon-device-off:hover{
+	background-color:#607d8b !important;
+}
+
+.icon-lg-ext{
+	position: relative;
+	top:50%;
+	width: 60px;
+	height: 60px;
+	display: inline-block;
+	mask-size: cover;
+}
+
+
 .icon-lg{
 	position: relative;
 	top:50%;
 	width: 48px;
 	height: 48px;
+	display: inline-block;
+	mask-size: cover;
+}
+
+.icon-sm{
+	position: relative;
+	top:50%;
+	width: 18px;
+	height: 18px;
 	display: inline-block;
 	mask-size: cover;
 }
@@ -123,6 +160,34 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	-webkit-mask-image: url("../images/ic_build_white_18px.svg");
 	mask-image: url("../images/ic_build_white_24px.svg");
 	-webkit-mask-size: cover;
+}
+
+.icon-setting {
+	-webkit-mask-image: url("../images/ic_settings_black_24px.svg");
+	mask-image: url("../images/ic_settings_black_24px.svg");
+	-webkit-mask-size: cover;
+}
+
+.icon-home {
+	-webkit-mask-image: url("../images/ic_home_black_48px.svg");
+	mask-image: url("../images/ic_home_black_48px.svg");
+	-webkit-mask-size: cover;
+}
+
+.icon-info {
+	-webkit-mask-image: url("../images/ic_info_outline_white_24px.svg");
+	mask-image: url("../images/ic_info_outline_white_24px.svg");
+	-webkit-mask-size: cover;
+}
+
+.icon-library {
+	-webkit-mask-image: url("../images/ic_library_books_white_24px.svg");
+	mask-image: url("../images/ic_library_books_white_24px.svg");
+	-webkit-mask-size: cover;
+}
+
+.icon-color-hb{
+	background-color: #438bca;
 }
 
 .icon-red{
@@ -171,5 +236,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 }
 
 .row-select{
-	background-color: #a3e9a4 !important;
+	background-color: rgba(0,188,2122,0.57) !important;
+	color:white;
+}
+
+.btn-green{
+    background-color: #45ca43 !important;
+    color: white !important;
 }

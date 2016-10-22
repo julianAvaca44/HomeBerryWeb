@@ -25,16 +25,47 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="state in vm.entity">
+				<tr ng-class="[state.nombre==vm.selectedState.nombre?'row-select':'']" ng-repeat="state in vm.entity" ng-click="vm.selectState(state)">
 					<td>{{state.nombre}}</td>
 					<td>{{state.descripcion}}</td>
 					<td>{{state.cantDevices}}</td>
 					<td>
-						<div class="icon icon-delete icon-red" ng-click="vm.deleteState(state)">
+						<div class="icon icon-delete icon-red" ng-click="vm.deleteState(state,$index)">
 						</div>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+	<md-card ng-if="vm.selectedState">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Estado: {{vm.selectedState.nombre}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+        	<p>{{vm.selectedState.descripcion}}</p>
+          <table class="table table-striped table-hover">
+            <thead class="thead-inverse">
+              <tr>
+                  <th>Zona</th>
+                  <th>Dispositivo</th>
+                  <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="confState in vm.selectedState.configEstado">
+                <td>{{confState.zona}}</td>
+                <td>{{confState.device}}</td>
+                <td>
+                	<div ng-class="[confState.estado?'icon icon-device icon-black icon-device-on':'icon icon-device icon-black icon-device-off']"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Editar</md-button>
+        </md-card-actions>
+      </md-card>
 </section>

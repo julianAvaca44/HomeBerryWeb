@@ -319,6 +319,15 @@ router.get('/state', function(req, res) {
     }); 
 });
 
+router.get('/state/:nombre', function(req, res) {
+    console.log("get/:ID : state/:%s",req.params.nombre);
+    var db = req.db;
+    var collection = db.get('state');
+    collection.findOne({nombre:req.params.nombre},{},function(e,docs){
+        res.send(docs);
+    });  
+});
+
 router.post('/state', function(req, res) {
     console.log("POST : state");
      var db = req.db;

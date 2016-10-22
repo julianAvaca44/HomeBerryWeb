@@ -1,22 +1,34 @@
 <!-- CONFIG HTML-->
-<div>
-
-            <div layout-gt-sm="row" layout-align="space-around center">
-              <md-input-container class="md-block" flex-gt-sm>
-                <label>Network</label>
-                <md-select ng-model="vm.entity.essid" required>
-                  <md-option ng-repeat="net in vm.net.network" value="{{net}}">
-                    {{net}}
-                  </md-option>
-                </md-select>
-              </md-input-container>
-              <md-input-container  class="md-block" flex-gt-sm>
-                <label>Password</label>
-                <input ng-model="vm.entity.password" value="SyncMaster755s" ng-required="true">
-              </md-input-container>
-              <md-button ng-click="vm.conect()" style="margin-right:20px;">
-        		Conectar
-      			</md-button>
-            </div>
-         
-</div>
+<section>
+  <div class="menu-tablas">
+    <div class="menu-tablas-izq">
+      <div class="menu-tablas-izq">
+        <div class="icon-lg icon-setting icon-black"></div>
+      </div>
+      <div class="menu-tablas-der">
+        <h3><span>Configuración</span></h3> 
+      </div>
+    </div>
+    <div style="clear:both;"></div>
+  </div>
+  <div class="line-division"></div>
+  <div class="body-view">
+    <div layout-gt-sm="row" layout-align="space-around center">
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Network</label>
+        <md-select ng-model="vm.entity.essid" required>
+          <md-option ng-repeat="net in vm.net.network" value="{{net}}">
+            {{net}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+      <md-input-container  class="md-block" flex-gt-sm>
+        <label>Password</label>
+        <input ng-model="vm.entity.password" value="SyncMaster755s" ng-required="true">
+      </md-input-container>
+      <md-button ng-click="vm.conect()" style="margin-right:20px;">
+      Conectar
+      </md-button>
+    </div> 
+  </div>
+</section>

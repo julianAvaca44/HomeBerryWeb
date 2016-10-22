@@ -50,14 +50,20 @@ angular.module('hBwebApp')
     }
     this.getState();
     
-    this.deleteState = function(state){
+    this.deleteState = function(state, index){
       $http.delete('/state/'+state.nombre).then(function(response){
         console.log(response);
+        self.selectedState = undefined;
+        self.entity.splice(index, 1);
         self.getState();
       }, function(err){
         console.log(err);
       });
     };
+
+     this.selectState = function(state){
+      this.selectedState = state;
+    }
 
     //ANOTHER CONTROLLER ----------------------------------------*************************!!
     function DialogController($scope, $mdDialog) {
@@ -76,30 +82,41 @@ angular.module('hBwebApp')
       };
 
       this.newDivece = function(){
-    	if(!this.configState){
-    		return false;	
-    	}
-    	var confDevice ={
-    		device:'',
-    		estado:false
+      	if(!this.configState){
+      		return false;	
+      	}
+      	var confDevice ={
+      		device:'',
+      		estado:false
+      	};
+      	this.configState.push(confDevice);
+      	this.showBtnNew = false;
+      };
+
+    	this.addDeviceToState = function(confDevice){
+    		if(!this.entity || !confDevice){
+    			return false;
+    		}
+    		confDevice.exist = true;
+    		this.showBtnNew = true;
+    		this.entity.configEstado.push(confDevice);
+      };
+
+      this.removeDeviceToState = function(){
+        if(!this.configState){
+          return false;
+        }
+        this.configState.pop();
+        if(this.configState.length == 0){
+          this.showBtnNew = true;
+        }
+
+      };
+
+    	this.deleteConf = function(index){
+        this.entity.configEstado.splice(index, 1);
+        this.configState.splice(index, 1);
     	};
-    	this.configState.push(confDevice);
-    	this.showBtnNew = false;
-    };
-
-	this.addDeviceToState = function(confDevice){
-		if(!this.entity || !confDevice){
-			return false;
-		}
-		confDevice.exist = true;
-		this.showBtnNew = true;
-		this.entity.configEstado.push(confDevice);
-    };
-
-	this.deleteConf = function(index){
-	    	this.entity.configEstado.splice(index, 1);
-	        this.configState.splice(index, 1);
-	};
       
       this.aceptar = function(answer) {
         //acaba el request con el post y recargar la lista
