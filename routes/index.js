@@ -155,10 +155,12 @@ router.get('/zone', function(req, res) {
 router.post('/zone', function(req, res) {
     console.log("POST : zone");
     var db = req.db;
+     console.log(req.body);
     var zonaNombre = req.body.nombre;
     var zonaDescripcion = req.body.descripcion;
     var collection = db.get('zone');
-    var count = db.get('counterZone'); 
+    var count = db.get('counterZone');
+    console.log('debug'); 
     count.findOneAndUpdate(
             { id: "zoneId" },
             { $inc: { seq: 1 } },
@@ -213,8 +215,9 @@ router.get('/zone/:id', function(req, res) {
 });
 
 router.get('/user', function(req, res) {
+	console.log('GET users');
     var db = req.db;
-    var collection = db.get('user');
+    var collection = db.get('users');
     collection.find({},{},function(e,docs){
         res.send(docs);
     });
@@ -222,7 +225,8 @@ router.get('/user', function(req, res) {
 
 router.get('/user/:id', function(req, res) {
     var db = req.db;
-    var collection = db.get('user');
+    console.log('GET user');
+    var collection = db.get('users');
     collection.findOne({id:req.params.id},{},function(e,docs){
         console.log(req.params.id);
         res.send(docs);
@@ -232,7 +236,7 @@ router.get('/user/:id', function(req, res) {
 router.delete('/user/:id', function(req, res) {
     console.log("DELETE : user/:%s",req.params.id);
     var db = req.db;
-    var collection = db.get('user');
+    var collection = db.get('users');
     collection.remove({dni:req.params.id},{},function(e,docs){
         res.send(docs);
     });  
@@ -240,7 +244,7 @@ router.delete('/user/:id', function(req, res) {
 
 router.put('/user/:id', function(req, res) {
     var db = req.db;
-    var collection = db.get('user');
+    var collection = db.get('users');
     collection.find({},{},function(e,docs){
         res.send(docs);
     });
@@ -258,7 +262,7 @@ router.post('/user', function(req, res) {
     var userNombreWifi = req.body.nombreWifi;
     var userAccionadoSensor = req.body.accionadoSensor;
     var userTc = req.body.tc;
-    var collection = db.get('user');
+    var collection = db.get('users');
     
     collection.insert({
         "dni" : userDni,
@@ -270,7 +274,9 @@ router.post('/user', function(req, res) {
         "tc":userTc,
         "wifi": userWifi,
         "nombreWifi": userNombreWifi,
-        "accionadoSensor": userAccionadoSensor
+        "accionadoSensor": userAccionadoSensor,
+  		"ultimaSolicitudCoordenadas" : 1476496599
+
     }, function (err, doc) {
             if (err) {
                 // If it failed, return error
