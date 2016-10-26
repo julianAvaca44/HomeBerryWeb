@@ -1,4 +1,4 @@
-//models/zone.js
+//models/user.js
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -10,14 +10,15 @@ var userSchema = new Schema({
 	mail: String,
 	telefono: Number,
 	perfil: String,
-	wifi: Boolean,
+	telegramID: { type: String, default: "" },
 	descripcion: String,
-	numero:  Number,
-	cantDevices: Number,
-	accionadoSensor: String,
-	nombreWifi: String,
-	coordSolicitadas: Number,
-	ultimaSolicitudCoordenadas: String
+	numero:  { type: Number, default: 0 },
+	coordSolicitadas: { type: String, default: "" },
+	ultimaSolicitudCoordenadas: { type: String, default: "" },
+	tc:{
+		id:String,
+		values:{}
+	}
 },{collection: 'users'});
 
 //Indicamos que podremos cargarlo de otro lugar 

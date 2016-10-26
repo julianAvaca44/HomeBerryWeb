@@ -64,8 +64,6 @@ router.get('/zone/:id', function(req, res) {
 });
 /*----- ROUTE ZONE FIN -----*/
 
-
-
 /*----- ROUTE USER INICIO -----*/
 router.get('/user', function(req, res) {
     console.log("GET : user");
@@ -186,11 +184,6 @@ router.get('/devices/:id', function(req, res) {
 
 router.get('/devicesForZona/:zona', function(req, res) {
     console.log("GET : devicesForZona/: %s",req.params.zona);
-    collection.find({zona:req.params.zona},{},function(e,docs){
-        console.log(req.params.zona);
-        res.send(docs);
-    });
-    console.log("GET : devicesForZona/: %s",req.params.zona);
     Device.find({ idZona: req.params.zona }, function(err, device) {
       if (err) throw err;
       console.log(device);
@@ -208,7 +201,6 @@ router.get('/state', function(req, res) {
         console.log(state);
         res.send(state);
     });
-
 });
 
 router.post('/state', function(req, res) {
@@ -217,16 +209,12 @@ router.post('/state', function(req, res) {
     var newState = new State({
         nombre : req.body.nombre,
         descripcion: req.body.descripcion,
-        cinfigEstado:  [{
-            device: '',
-            estado: false,
-            zona: ''
-        }],
+        configEstado:  [],
         cantDevices: req.body.configEstado.length
     });
 
     req.body.configEstado.forEach(function(element,index,array){
-        newState.cinfigEstado.push(element);
+        newState.configEstado.push(element);
     });
 
     newState.save(function(err) {

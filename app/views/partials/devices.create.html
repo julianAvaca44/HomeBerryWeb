@@ -5,7 +5,7 @@
         <h2>Agregar Nuevo Dispositivo</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="vmDialog.cancel()">
-          <md-icon md-svg-src="../../images/ic_close_white_64px.svg" aria-label="Close dialog"></md-icon>
+          <md-icon md-svg-src="../../images/ic_close_white_64px.svg" aria-label="Close dialog" ng-click="vmDialog.cancel()"></md-icon>
         </md-button>
       </div>
     </md-toolbar>
@@ -28,8 +28,8 @@
             <md-input-container class="md-block" flex-gt-sm>
               <label>Zona</label>
               <md-select ng-model="vmDialog.entity.zona" required>
-                <md-option ng-repeat="zone in vmDialog.areas" value="{{zone.id}}">
-                  {{zone.nombre}}
+                <md-option ng-repeat="zone in vmDialog.areas" value="{{zone.nombre}}">
+                  {{zone.nombre}} {{zone.descripcion?'-':''}} {{zone.descripcion}}
                 </md-option>
               </md-select>
             </md-input-container>
