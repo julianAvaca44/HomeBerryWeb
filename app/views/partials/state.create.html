@@ -61,7 +61,7 @@
               <label>Zonas</label>
               <md-select ng-disabled="!vmDialog.entity.nombre" ng-model="confDevice.zona" ng-change="vmDialog.getDevicesForZona(confDevice.zona)" required>
                 <md-option ng-repeat="zone in vmDialog.areas" value="{{zone.nombre}}">
-                  {{zone.nombre}}
+                  {{zone.nombre}} {{zone.descripcion?'-':''}} {{zone.descripcion}}
                 </md-option>
               </md-select>
             </md-input-container>
@@ -69,7 +69,7 @@
               <label>Dispositivos</label>
               <md-select ng-model="confDevice.device" ng-disabled="!confDevice.zona" required>
                 <md-option ng-repeat="device in vmDialog.devicesForZona" value="{{device.id}}">
-                  {{device.id}}
+                  {{device.nombre}} {{device.descripcion?'-':''}} {{device.descripcion}}
                 </md-option>
               </md-select>
             </md-input-container>
@@ -83,10 +83,10 @@
           </div>
         </div>
         <!--  FIN DEL FORMULARIO  --> 
+        <div class="line-division"></div>
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-    <div class="line-division"></div>
       <md-button class="md-raised md-primary" ng-disabled="!vmDialog.entity.nombre || vmDialog.entity.nombre == '' || !vmDialog.entity.configEstado.length > 0" ng-click="vmDialog.aceptar(deviceForm)">
        Aceptar
       </md-button>

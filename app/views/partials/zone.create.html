@@ -1,5 +1,5 @@
-<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
-  <form>
+<md-dialog class="form-zone" aria-label="Agregar Nueva Zona" ng-cloak>
+  <form name="zoneForm">
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Agregar Nueva Zona</h2>
@@ -10,8 +10,8 @@
       </div>
     </md-toolbar>
     <md-dialog-content>
-      <div class="container-mdDialog">
-        <form name="zoneForm">
+      <div class="md-dialog-content">
+        <!--  INICIO DEL FORMULARIO  -->
           <div layout="row" layout-align="space-around center">
             <md-input-container  class="md-block">
               <label>Nombre</label>
@@ -22,7 +22,7 @@
               <input ng-model="vmDialog.descripcion">
             </md-input-container>
           </div>
-        </form>
+          <div class="line-division"></div>
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">

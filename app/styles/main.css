@@ -227,6 +227,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
     margin-top: 5px;
     display: block;
 }
+.form-zone{
+	min-width: 60% !important;
+    min-height: 50% !important;
+    max-width: 85% !important;
+    max-height: 95% !important;
+}
 
 .form-user{
 	min-width: 70% !important;
