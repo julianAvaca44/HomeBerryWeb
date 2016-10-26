@@ -3,8 +3,10 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var mongoClient = require('mongodb').MongoClient;
-var monk = require('monk');
-var db = monk('mongodb://localhost:27017/homeBerryDB');
+//var monk = require('monk');
+var mongoose = require('mongoose');
+//var db = monk('mongodb://localhost:27017/homeBerryDB');
+var db = mongoose.connect('mongodb://localhost:27017/homeBerryDB');
 var routes = require('./routes/index.js');
 // instanciar
 var app = express();
