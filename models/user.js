@@ -14,7 +14,7 @@ var userSchema = new Schema({
 	descripcion: String,
 	numero:  { type: Number, default: 0 },
 	coordSolicitadas: { type: String, default: "" },
-	ultimaSolicitudCoordenadas: { type: String, default: "" },
+	ultimaSolicitudCoordenadas: { type: Number, default: 0 },
 	tc:{
 		id:String,
 		values:{}

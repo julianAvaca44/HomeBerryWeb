@@ -151,11 +151,26 @@ router.post('/devices', function(req, res) {
         if(err) throw err;
         console.log('new device id: ' + id)
     });
-    newDevice.save(function(err) {
-      if (err) throw err;
-      res.send("Device saved successfully!");
-      console.log('Device saved successfully!');
+
+    Device.find({idZona:newDevice.idZona}, function(err, devices) {
+        if (err) throw err;
+        var number = 1;
+         
+        console.log(devices); 
+        while(devices.find(function(devices){
+              return devices.numero == number
+            })){
+          number++;
+          console.log(number);
+        }
+        newDevice.numero = number;
+        newDevice.save(function(err) {
+          if (err) throw err;
+          res.send("Device saved successfully!");
+          console.log('Device saved successfully!');
+        });
     });
+    
 });
 
 router.put('/devices/:id', function(req, res) {
