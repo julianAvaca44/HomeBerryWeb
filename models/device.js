@@ -12,9 +12,9 @@ var deviceSchema = new Schema({
 	idZona : String,
 	tipo : String,
 	estado : { type: Number, default: 0 },
-	Wife: Boolean,
-	accionadoSensor: String,
-	nombreWifi: String,
+	Wife:  { type: Boolean, default: false},
+	accionadoSensor: { type: String, default: ""},
+	nombreWifi: { type: String, default: ""},
 },{collection: 'devices'});
 
 deviceSchema.methods.createId = function(){

@@ -24,6 +24,7 @@ angular.module('hBwebApp')
         controllerAs: 'vmDialog',
         templateUrl: '../views/partials/state.create.html',
         parent: angular.element(document.body),
+        locale
         targetEvent: ev,
         clickOutsideToClose:true,
         fullscreen: useFullScreen
