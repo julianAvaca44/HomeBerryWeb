@@ -142,10 +142,7 @@ router.post('/devices', function(req, res) {
         descripcion : req.body.descripcion,
         pin : req.body.pin,
         idZona : req.body.zona,
-        tipo : req.body.tipo,
-        Wife: req.body.Wife,
-        accionadoSensor: req.body.accionadoSensor,
-        nombreWifi: req.body.nombreWifi,
+        tipo : req.body.tipo
     });
     newDevice.createId(function(err,id){
         if(err) throw err;

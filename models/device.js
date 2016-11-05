@@ -12,7 +12,7 @@ var deviceSchema = new Schema({
 	idZona : String,
 	tipo : String,
 	estado : { type: Number, default: 0 },
-	Wife:  { type: Boolean, default: false},
+	Wifi:  { type: Boolean, default: false},
 	accionadoSensor: { type: String, default: ""},
 	nombreWifi: { type: String, default: ""},
 },{collection: 'devices'});
