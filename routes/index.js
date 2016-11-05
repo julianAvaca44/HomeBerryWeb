@@ -149,7 +149,7 @@ router.post('/devices', function(req, res) {
         console.log('new device id: ' + id)
     });
 
-    Device.find({idZona:newDevice.idZona}, function(err, devices) {
+    Device.find({idZona:newDevice.idZona,tipo:newDevice.tipo}, function(err, devices) {
         if (err) throw err;
         var number = 1;
          

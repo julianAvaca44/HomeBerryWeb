@@ -12,7 +12,7 @@ var stateSchema = new Schema({
 		zona: String
 	}],
 	cantDevices: Number
-},{collection: 'state'});
+},{collection: 'states'});
 
 
 //Indicamos que podremos cargarlo de otro lugar 
