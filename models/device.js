@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Zone = require('./zone.js');//Agregamos el modelo
 //objeto modelo de mongoose
 var deviceSchema = new Schema({
 	id : {type:String,index: {unique: true, dropDups: true}},
@@ -17,11 +18,19 @@ var deviceSchema = new Schema({
 	nombreWifi: { type: String, default: ""},
 },{collection: 'devices'});
 
-deviceSchema.methods.createId = function(){
-	this.numero = Math.floor((Math.random() * 1000) + 1);
-	this.id = 'D'+ this.numero;
-	return this.id
-}
+// on every save, add the date
+deviceSchema.pre('save', function(next) {
+  self = this;
+  console.log("zona del device:" +this.idZona);
+  Zone.findOne({nombre:this.idZona}, function(err, zone) {
+        if (err) throw err;
+        console.log(zone);
+  		self.id = 'D'+ self.numero;
+  		self.id = self.id +''+ zone.id;
+  		next();
+   });
+  
+});
 
 //Indicamos que podremos cargarlo de otro lugar 
 module.exports = mongoose.model('device', deviceSchema);

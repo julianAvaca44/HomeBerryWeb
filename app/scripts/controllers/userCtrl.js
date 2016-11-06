@@ -10,7 +10,7 @@ angular.module('hBwebApp')
     this.status = '  ';
     this.customFullscreen = false;
 
-    this.showAdvanced = function(ev) {
+    this.showAdvanced = function(ev , edit) {
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
       $mdDialog.show({
         controller: DialogController,
@@ -18,6 +18,10 @@ angular.module('hBwebApp')
         templateUrl: '../views/partials/user.create.html',
         parent: angular.element(document.body),
         targetEvent: ev,
+        locals:{
+          selectedUser: this.selectedUser,
+          put: edit
+        },
         clickOutsideToClose:true,
         fullscreen: useFullScreen
       })
@@ -33,9 +37,15 @@ angular.module('hBwebApp')
       });
     };
 
-    function DialogController($scope, $mdDialog) {
+    function DialogController($scope, $mdDialog, selectedUser,put) {
     	var that = this;
-    	this.entity = {}; 
+      this.put = put;
+      if(selectedUser !== undefined && this.put){
+       this.entity = angular.copy(selectedUser);
+      }else{
+        this.entity = {};   
+      }
+    	
 	    this.hide = function() {
 	        $mdDialog.hide();
 	    };
@@ -47,19 +57,46 @@ angular.module('hBwebApp')
 	      
 	    this.aceptar = function(answer) {
 	        //acaba el request con el post y recargar la lista
-	        $http.post('/user',this.entity).then(function(response){
-	          console.log(self);
-	          console.log("ok POST");
-	          $mdDialog.cancel();
-	          self.getUser();
-	        }, function(err){
-	          console.log("Err: POST");
-	          console.log(err);
-	          $mdDialog.cancel();
-	          self.getUser();
-	        });
+	        this.save();
 	        console.log("btn Acpetar");
-	      };
+      };
+
+      this.save = function(){
+        if (this.put){
+          this.saveUpdate();
+        }else{
+          this.saveCreate();
+        }
+      };
+
+      this.saveCreate = function(){
+        $http.post('/user',this.entity).then(function(response){
+            console.log(self);
+            console.log("ok POST");
+            $mdDialog.cancel();
+            self.getUser();
+          }, function(err){
+            console.log("Err: POST");
+            console.log(err);
+            $mdDialog.cancel();
+            self.getUser();
+          });
+      };
+
+      this.saveUpdate = function(){
+        $http.put('/user/'+this.entity.dni,this.entity).then(function(response){
+            console.log(self);
+            console.log("ok PUT");
+            $mdDialog.cancel();
+            selectedUser = undefined;
+            self.getUser();
+          }, function(err){
+            console.log("Err: PUT");
+            console.log(err);
+            $mdDialog.cancel();
+            self.getUser();
+          });
+      };
 
 	    this.generateTc = function(){
 	    	$http.get('/tc').then(function(response){

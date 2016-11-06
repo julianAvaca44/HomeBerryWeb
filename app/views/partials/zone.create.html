@@ -15,18 +15,18 @@
           <div layout="row" layout-align="space-around center">
             <md-input-container  class="md-block">
               <label>Nombre</label>
-              <input ng-model="vmDialog.nombre">
+              <input ng-model="vmDialog.nombre" required ng-keyup="vmDialog.keyup($event,zoneForm)">
             </md-input-container>
             <md-input-container class="md-block">
               <label>Descripción</label>
-              <input ng-model="vmDialog.descripcion">
+              <input ng-model="vmDialog.descripcion" ng-keyup="vmDialog.keyup($event,zoneForm)">
             </md-input-container>
           </div>
           <div class="line-division"></div>
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-      <md-button ng-click="vmDialog.aceptar()">
+      <md-button ng-disabled="zoneForm.$invalid" ng-click="vmDialog.aceptar()">
        Aceptar
       </md-button>
       <md-button ng-click="vmDialog.cancel()" style="margin-right:20px;">

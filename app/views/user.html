@@ -9,10 +9,10 @@
 			</div>
 		</div>
 		<div class="menu-tablas-der">
-			 <md-button class="md-raised md-primary" ng-click="vm.showAdvanced($event)">Agregar</md-button>
+			 <md-button class="md-raised md-primary" ng-click="vm.showAdvanced($event,false)">Agregar</md-button>
 		</div>
 		<div class="menu-tablas-der">
-			 <md-button class="md-raised md-primary" ng-click="vm.showAdvanced($event)" ng-disabled="!vm.selectedUser">Editar</md-button>
+			 <md-button class="md-raised md-primary" ng-click="vm.showAdvanced($event,true)" ng-disabled="!vm.selectedUser">Editar</md-button>
 		</div>
 		<div style="clear:both;"></div>
 	</div>

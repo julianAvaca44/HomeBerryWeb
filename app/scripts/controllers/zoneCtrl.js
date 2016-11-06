@@ -63,6 +63,12 @@ angular.module('hBwebApp')
           self.getZone();
         });
       };
+
+      this.keyup = function(event,form){
+          if(!form.$invalid && event.keyCode === 13){
+            this.aceptar();
+          }
+      }
     }
 
     this.deleteZone = function(zone){

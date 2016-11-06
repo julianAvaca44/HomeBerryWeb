@@ -33,7 +33,7 @@
             </md-input-container>
             <md-input-container class="md-block" flex=30>
               <label>Zona</label>
-              <md-select ng-model="vmDialog.entity.zona" required>
+              <md-select ng-model="vmDialog.entity.idZona" required>
                 <md-option ng-repeat="zone in vmDialog.areas" value="{{zone.nombre}}">
                   {{zone.nombre}} {{zone.descripcion?'-':''}} {{zone.descripcion}}
                 </md-option>

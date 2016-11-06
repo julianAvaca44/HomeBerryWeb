@@ -16,7 +16,7 @@ angular.module('hBwebApp')
     this.status = '  ';
     this.customFullscreen = false;
 
-    this.addDevices = function(ev) {
+    this.addDevices = function(ev,edit) {
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
       $mdDialog.show({
         controller: DialogController,
@@ -24,6 +24,10 @@ angular.module('hBwebApp')
         templateUrl: '../views/partials/devices.create.html',
         parent: angular.element(document.body),
         targetEvent: ev,
+        locals:{
+          selectedDevice: this.selectedDevice,
+          put: edit
+        },
         clickOutsideToClose:true,
         fullscreen: useFullScreen
       })
@@ -74,9 +78,14 @@ angular.module('hBwebApp')
     *
     *Controller para el model Dialog
     */
-    function DialogController($scope, $mdDialog) {
+    function DialogController($scope, $mdDialog,selectedDevice,put) {
       var that = this; 
-      this.entity = {};
+      this.put = put;
+      if(selectedDevice !== undefined && this.put){
+       this.entity = angular.copy(selectedDevice);
+      }else{
+        this.entity = {};   
+      }
       
       this.hide = function() {
         $mdDialog.hide();
@@ -89,20 +98,47 @@ angular.module('hBwebApp')
         $mdDialog.cancel();
       };
       
-      this.aceptar = function(deviceForm) {
-        //acaba el request con el post y recargar la lista
-        console.log(deviceForm);
+      this.aceptar = function(answer) {
+          //acaba el request con el post y recargar la lista
+          this.save();
+          console.log("btn Acpetar");
+      };
+
+      this.save = function(){
+        if (this.put){
+          this.saveUpdate();
+        }else{
+          this.saveCreate();
+        }
+      };
+
+      this.saveCreate = function(){
         $http.post('/devices',this.entity).then(function(response){
-          console.log(self);
-          console.log("ok POST");
-          $mdDialog.cancel();
-          self.getDevices();
-        }, function(err){
-          console.log("Err: POST");
-          console.log(err);
-          $mdDialog.cancel();
-          self.getDevices();
-        });
+            console.log(self);
+            console.log("ok POST");
+            $mdDialog.cancel();
+            self.getDevices();
+          }, function(err){
+            console.log("Err: POST");
+            console.log(err);
+            $mdDialog.cancel();
+            self.getDevices();
+          });
+      };
+
+      this.saveUpdate = function(){
+        $http.put('/devices/'+this.entity.id,this.entity).then(function(response){
+            console.log(self);
+            console.log("ok PUT");
+            $mdDialog.cancel();
+            selectedDevice = undefined;
+            self.getDevices();
+          }, function(err){
+            console.log("Err: PUT");
+            console.log(err);
+            $mdDialog.cancel();
+            self.getDevices();
+          });
       };
 
        this.getZone = function(){
@@ -124,6 +160,10 @@ angular.module('hBwebApp')
         });  
       };
       this.getTypeDevices();
+    }
+
+    this.selectDevice = function(device){
+      this.selectedDevice = device;
     }
 
   }]);

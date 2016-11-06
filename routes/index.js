@@ -97,10 +97,29 @@ router.post('/user', function(req, res) {
     });
 });
 
-router.put('/user/:id', function(req, res) {
-    console.log("PUT : user/:%s",req.params.id);
+router.put('/user/:dni', function(req, res) {
+    console.log("PUT : user/:%s",req.params.dni);
     //TODO: falta hacer
-    res.send("EN MANTENIMIENTO...");
+    User.findOne({dni:req.params.dni}, function(err, user) {
+        if (err) throw err;
+        console.log(user);
+
+        user.nombre = req.body.nombre;
+        user.apellido = req.body.apellido;
+        user.descripcion = req.body.descripcion;
+        user.mail = req.body.mail;
+        user.perfil = req.body.perfil;
+        user.tc = {
+            id:req.body.tc.id,
+            values:req.body.tc.values};
+        user.telefono = req.body.telefono;
+
+        user.save(function(err) {
+          if (err) throw err;
+          res.send("successfully");
+          console.log('User Update successfully!');
+        });
+    });
 });
 
 router.delete('/user/:dni', function(req, res) {
@@ -141,15 +160,14 @@ router.post('/devices', function(req, res) {
         nombre : req.body.nombre,
         descripcion : req.body.descripcion,
         pin : req.body.pin,
-        idZona : req.body.zona,
+        idZona : req.body.idZona,
         tipo : req.body.tipo
-    });
-    newDevice.createId(function(err,id){
-        if(err) throw err;
-        console.log('new device id: ' + id)
     });
 
     Device.find({idZona:newDevice.idZona,tipo:newDevice.tipo}, function(err, devices) {
+        console.log("ENCONTRE ----");
+        console.log(devices);
+        console.log(err); 
         if (err) throw err;
         var number = 1;
          
@@ -172,8 +190,21 @@ router.post('/devices', function(req, res) {
 
 router.put('/devices/:id', function(req, res) {
     console.log("PUT : devices/:%s",req.params.id);
-    //TODO: falta hacer
-    res.send("EN MANTENIMIENTO...");
+    Device.findOne({id:req.params.id}, function(err, device) {
+        if (err) throw err;
+        console.log(device);
+        device.nombre = req.body.nombre;
+        device.descripcion = req.body.descripcion;
+        device.idZona = req.body.idZona;
+        device.pin = req.body.pin;
+        device.tipo = req.body.tipo;
+
+        device.save(function(err) {
+          if (err) throw err;
+          res.send("successfully");
+          console.log('Device Update successfully!');
+        });
+    });
 });
 
 router.delete('/devices/:id', function(req, res) {

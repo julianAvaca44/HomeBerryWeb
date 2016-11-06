@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 //objeto modelo de mongoose
 var zoneSchema = new Schema({
  id: {type:String,index: {unique: true, dropDups: true}},
- nombre:{type: String,lowercase: true },
+ nombre:{type: String,lowercase: true,index: {unique: true, dropDups: true} },
  descripcion: String,
  numero:  Number,
  cantDevices: { type: Number, default: 0 }

@@ -9,8 +9,12 @@
 			</div>
 		</div>
 		<div class="menu-tablas-der">
-			 <md-button class="md-raised md-primary" ng-click="vm.addDevices($event)">Agregar</md-button>
+			 <md-button class="md-raised md-primary" ng-click="vm.addDevices($event,false)">Agregar</md-button>
 		</div>
+		<div class="menu-tablas-der">
+			 <md-button class="md-raised md-primary" ng-click="vm.addDevices($event,true)" ng-disabled="!vm.selectedDevice">Editar</md-button>
+		</div>
+		<div style="clear:both;"></div>
 		<div style="clear:both;"></div>
 	</div>
 	<div class="line-division"></div>
@@ -30,7 +34,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="device in vm.entity">
+				<tr ng-repeat="device in vm.entity" ng-class="[device.id==vm.selectedDevice.id?'row-select':'']" ng-click="vm.selectDevice(device)">
 					<td>{{device.id}}</td>
 					<td>{{device.nombre}}</td>
 					<td>{{device.numero}}</td>
