@@ -121,6 +121,7 @@ angular.module('hBwebApp')
     this.deleteUser = function(user){
       $http.delete('/user/'+user.dni).then(function(response){
         console.log(response);
+        self.selectedUser = undefined;
         self.getUser();
       }, function(err){
         console.log(err);

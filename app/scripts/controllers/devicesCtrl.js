@@ -43,11 +43,10 @@ angular.module('hBwebApp')
       });
     };
 
-
-
     this.deleteDevice = function(device){
       $http.delete('/devices/'+device.id).then(function(response){
         console.log(response);
+        self.selectedDevice = undefined;
         self.getDevices();
       }, function(err){
         console.log(err);
@@ -63,17 +62,6 @@ angular.module('hBwebApp')
       });  
     }
     this.getDevices(); 
-
-    this.deleteZone = function(device){
-      $http.delete('/devices/'+device.id).then(function(response){
-        console.log(response);
-        self.getDevices();
-      }, function(err){
-        console.log(err);
-      });
-    }
-
-
     /*
     *
     *Controller para el model Dialog

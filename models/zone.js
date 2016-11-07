@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+
 //objeto modelo de mongoose
 var zoneSchema = new Schema({
  id: {type:String,index: {unique: true, dropDups: true}},
@@ -11,11 +12,26 @@ var zoneSchema = new Schema({
  cantDevices: { type: Number, default: 0 }
 },{collection: 'zone'});
 
-zoneSchema.methods.createId = function(){
-	this.numero = Math.floor((Math.random() * 1000) + 1);
-	this.id = 'Z'+ this.numero;
-	return this.id
-}
-
 //Indicamos que podremos cargarlo de otro lugar 
-module.exports = mongoose.model('zone', zoneSchema);
+var zoneModel = mongoose.model('zone', zoneSchema);
+module.exports = zoneModel;
+
+zoneSchema.pre('save', function(next) {
+	console.log(this);
+	var self = this;
+	zoneModel.find({}, function(err, zone) {
+		if (err) throw err;
+        var number = 1;
+        console.log(zone); 
+        while(zone.find(function(zone){
+              return zone.numero == number
+            })){
+          number++;
+          console.log(number);
+        }
+        self.numero = number;
+        self.id = 'Z'+ self.numero;
+        next();
+	});
+});
+

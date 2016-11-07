@@ -21,12 +21,18 @@ var deviceSchema = new Schema({
 // on every save, add the date
 deviceSchema.pre('save', function(next) {
   self = this;
+  tipo = {
+  	luz:'L',
+  	porton:'P',
+  	sensormovimiento:'SM',
+  	sensorluz:'SL'
+  };
   console.log("zona del device:" +this.idZona);
   Zone.findOne({nombre:this.idZona}, function(err, zone) {
         if (err) throw err;
         console.log(zone);
   		self.id = 'D'+ self.numero;
-  		self.id = self.id +''+ zone.id;
+  		self.id = self.id + '' + zone.id + '' + tipo[self.tipo];
   		next();
    });
   

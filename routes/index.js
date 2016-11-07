@@ -28,10 +28,6 @@ router.post('/zone', function(req, res) {
         nombre:req.body.nombre,
         descripcion:req.body.descripcion
     });
-    newZone.createId(function(err,id){
-        if(err) throw err;
-        console.log('new zone id: ' + id)
-    });
     newZone.save(function(err) {
       if (err) throw err;
       res.send("successfully");
@@ -164,10 +160,7 @@ router.post('/devices', function(req, res) {
         tipo : req.body.tipo
     });
 
-    Device.find({idZona:newDevice.idZona,tipo:newDevice.tipo}, function(err, devices) {
-        console.log("ENCONTRE ----");
-        console.log(devices);
-        console.log(err); 
+    Device.find({idZona:newDevice.idZona,tipo:newDevice.tipo}, function(err, devices) { 
         if (err) throw err;
         var number = 1;
          
