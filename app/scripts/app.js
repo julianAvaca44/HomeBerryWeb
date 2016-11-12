@@ -30,7 +30,7 @@ angular
                   templateUrl: "../views/navBar.html",
                   controller: "NavBarCtrl"
                 },
-                "body":{
+                "":{
                   templateUrl: "../views/main.html",
                   controller: "MainCtrl"
                 },
@@ -39,12 +39,23 @@ angular
                 }
             } 
         })
+        .state('login', {
+            url: "/login",
+            views:{
+                "":{
+                  templateUrl: "../views/oauth/logIn.html",
+                  controller: "OauhtCtrl",
+                  controllerAs: "vm"
+                }
+            } 
+        })
         .state('main.home', {
           url: '',
           views: {
               '@main': {
                   templateUrl: "../views/home.html",
-                  controller: "HomeCtrl"
+                  controller: "HomeCtrl",
+                  controllerAs: "vm"
               }
             }
           })

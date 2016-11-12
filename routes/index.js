@@ -10,7 +10,35 @@ var Device = require('../models/device.js');//Agregamos el modelo
 var State = require('../models/state.js');//Agregamos el modelo 
 var Rol = require('../models/rol.js');//Agregamos el modelo 
 var TypeDevice = require('../models/typeDevice.js');//Agregamos el modelo 
+var Oauth = require('../models/oauth.js');//Agregamos el modelo 
+var nodemailer = require('nodemailer');
 
+/*----- OAUTH -----*/
+router.post('/oauth', function(req, res) {
+    console.log("authentication : oauth");
+    var authentication = new Oauth({
+        usr:req.body.usr,
+        pwd:req.body.pwd
+    });
+    console.log(authentication);
+    Oauth.findOne({usr: authentication.usr, pwd: authentication.pwd }, function(err, user) {
+      if (err) throw err;
+      console.log("user found");
+      var token = 'token-' ;
+      for(i=10; i>=0;i--){
+        token += String.fromCharCode(65 + i);
+        token += Math.floor((Math.random() * 100920) + 1);
+      }
+      console.log('token:  '+token);
+      console.log( user );
+      user.token = token;
+      user.save(function(err) {
+        if (err) throw err;
+        console.log("authentication successfully");
+        res.send(token);
+      });
+    });
+});
 
 /*----- ROUTE ZONE INICIO -----*/
 router.get('/zone', function(req, res) {
@@ -88,6 +116,9 @@ router.post('/user', function(req, res) {
     });
     newUser.save(function(err) {
       if (err) throw err;
+      console.log("function send mail");
+      sendMail(newUser);
+
       res.send("successfully");
       console.log('User saved successfully!');
     });
@@ -321,4 +352,70 @@ router.get('/roles', function(req, res) {
     });
 });
 
+function sendMail(user){
+
+  console.log("----- USER : "+user.dni);
+  console.log("send Mail");
+  console.log("transporter");
+  var transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+          user: 'homeberry.ar@gmail.com', // Your email id
+          pass: 'proyecto2016' // Your password
+      }
+  });
+
+  console.log(templateMail(user));  
+  console.log("mailOptions");
+  var mailOptions = {
+    from: '<homeberry.ar@gmail.com>', // sender address
+    to: user.mail, // list of receivers
+    subject: 'Nueva Tarjeta de coordenadas', // Subject line
+    html: templateMail(user)//templateMail(user)
+  // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+  };
+
+   console.log("mail sending");
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        console.log("---ERROR :");
+        console.log(error);
+        return error;
+    }else{
+        console.log('Message sent: ' + info.response);
+        return info;
+    };
+  });              
+}
+
+
+function templateMail(user){
+  console.log("TC");
+  console.log(user.tc);
+  var template = '<div><span><b>' + user.nombre + ' '+ user.apellido + ' tiene una nueva tarjeta de coordenadas: </b></span></div>';
+  var tableTc = '<table><thead><tr><td></td>';///tr><thead><tbody><tr></tr><tbody></table>';
+  var tableHead = '';
+  for(i=0; i<=8;i++){
+        var letra = String.fromCharCode(65 + i);
+        tableHead += '<td>' + letra + '</td>'
+  }
+  tableTc +=tableHead+ '</tr></thead><tbody>';        
+  var tableRow = '';
+  for(i=0; i<=8;i++){
+      var letra = String.fromCharCode(65 + i);
+      tableRow +='<tr><td>' + i+1 + '</td>';
+        for(j=1;j<10;j++){
+            tableRow +='<td>' + user.tc.values[letra + j] + '</td>'
+        }
+        tableRow +='</tr>'
+    }
+
+  template += tableTc + tableRow + '</tbody></table>'   
+
+  return template;
+}
+
 module.exports = router;
+
+//✔

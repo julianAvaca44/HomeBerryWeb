@@ -1,0 +1,35 @@
+<section class="login">
+	<md-card>
+        <md-card-title>
+          <md-card-title-text>
+          	<div>
+          		<div class="circulo">
+          			<md-icon md-svg-src="images/logoD.svg" style="position: relative;height: 100%;width:100%;padding:2px"></md-icon>
+          		</div>
+          		<!--span class="md-headline">Iniciar Sesión</span-->
+          	</div>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+        	<div layout="row" layout-align="space-around center">
+        		<md-input-container class="md-icon-float md-block">
+			      <!-- Use floating label instead of placeholder -->
+			      <label>Usuario</label>
+			      <md-icon md-svg-src="images/persona.svg" class="name"></md-icon>
+			      <input ng-model="vm.entity.usr" type="text" required>
+			    </md-input-container>
+        	</div>
+        	<div layout="row" layout-align="space-around center">
+        		<md-input-container class="md-icon-float md-block">
+			      <!-- Use floating label instead of placeholder -->
+			      <label>Contraseña</label>
+			      <md-icon md-svg-src="images/seguridad.svg" class="name"></md-icon>
+			      <input ng-model="vm.entity.pwd" type="password" required>
+			    </md-input-container>
+        	</div>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-raised md-primary" ng-click="vm.login()">LogIn</md-button>
+        </md-card-actions>
+      </md-card>
+</section>

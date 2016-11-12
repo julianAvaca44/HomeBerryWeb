@@ -8,11 +8,7 @@
  * Controller of the hBwebApp
  */
 angular.module('hBwebApp')
-  .controller('HomeCtrl', function ($scope) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-    console.log("estoy en home");
-  });
+  .controller('HomeCtrl', ['$scope',function ($scope) {
+
+    //this.oauth = OauthSrv;
+  }]);
