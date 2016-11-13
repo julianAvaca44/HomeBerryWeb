@@ -130,6 +130,11 @@ router.put('/user/:dni', function(req, res) {
     User.findOne({dni:req.params.dni}, function(err, user) {
         if (err) throw err;
         console.log(user);
+        console.log()
+        var newTc = false; 
+        if (!(user.tc.id == req.body.tc.id)){
+          newTc = true;
+        }
 
         user.nombre = req.body.nombre;
         user.apellido = req.body.apellido;
@@ -143,6 +148,11 @@ router.put('/user/:dni', function(req, res) {
 
         user.save(function(err) {
           if (err) throw err;
+          
+          if (newTc){
+            console.log("function send mail");
+            sendMail(user);  
+          }
           res.send("successfully");
           console.log('User Update successfully!');
         });
@@ -391,28 +401,34 @@ function sendMail(user){
 
 
 function templateMail(user){
-  console.log("TC");
+  console.log("***------- TC -------****\n\n");
   console.log(user.tc);
   var template = '<div><span><b>' + user.nombre + ' '+ user.apellido + ' tiene una nueva tarjeta de coordenadas: </b></span></div>';
-  var tableTc = '<table><thead><tr><td></td>';///tr><thead><tbody><tr></tr><tbody></table>';
+  var tableTc = '<table style="border-collapse: collapse;"><thead><tr><td></td>';///tr><thead><tbody><tr></tr><tbody></table>';
   var tableHead = '';
   for(i=0; i<=8;i++){
         var letra = String.fromCharCode(65 + i);
         tableHead += '<td>' + letra + '</td>'
   }
-  tableTc +=tableHead+ '</tr></thead><tbody>';        
+  tableTc +=tableHead+ '</tr></thead><tbody style="color:white;">';        
   var tableRow = '';
-  for(i=0; i<=8;i++){
-      var letra = String.fromCharCode(65 + i);
-      tableRow +='<tr><td>' + i+1 + '</td>';
-        for(j=1;j<10;j++){
-            tableRow +='<td>' + user.tc.values[letra + j] + '</td>'
+  
+  for(j=1;j<10;j++){
+        if(j%2 == 0){
+          tableRow +='<tr style="background-color:black;"><td style="background-color:white;color:black;border: 1px solid #438bca;">' + j + '</td>';
+        }else{
+          tableRow +='<tr style="background-color:#438bca;"><td style="background-color:white;color:black;border: 1px solid #438bca;">' + j + '</td>';  
+        }
+        //tableRow +='<tr><td>' + j + '</td>';
+        for(i=0; i<=8;i++){
+          var letra = String.fromCharCode(65 + i);          
+          tableRow +='<td style="border: 1px solid #438bca;">' + user.tc.values[letra + j] + '</td>'
         }
         tableRow +='</tr>'
     }
 
   template += tableTc + tableRow + '</tbody></table>'   
-
+  console.log("\n\n");
   return template;
 }
 
