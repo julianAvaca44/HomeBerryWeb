@@ -10,7 +10,7 @@ var userSchema = new Schema({
 	mail: String,
 	telefono: Number,
 	perfil: String,
-	telegramID: { type: String, default: "" },
+	telegramId: { type: String, default: "" },
 	descripcion: String,
 	numero:  { type: Number, default: 0 },
 	coordSolicitadas: { type: String, default: "" },
