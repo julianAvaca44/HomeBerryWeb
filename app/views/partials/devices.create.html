@@ -71,17 +71,14 @@
                 </div>
               </div>
             </md-radio-group>
-            <md-divider></md-divider>
-
-
-            
+            <md-divider></md-divider>            
           </div>
         <!--  FIN DEL FORMULARIO  -->
         <div class="line-division"></div> 
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-      <md-button ng-click="vmDialog.aceptar(deviceForm)">
+      <md-button ng-click="vmDialog.aceptar(deviceForm)" ng-disabled="deviceForm.$invalid">
        Aceptar
       </md-button>
       <md-button ng-click="vmDialog.cancel(deviceForm)" style="margin-right:20px;">

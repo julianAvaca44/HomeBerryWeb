@@ -12,9 +12,4 @@ angular.module('hBwebApp')
   	var self = this;
   	this.cookies = $cookies;
   	this.state = $state;
-    if(!this.cookies.get('token')){
-    	console.log('No existe TOKEN');
-    	this.state.go('login');
-    }
-
   }]);

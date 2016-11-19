@@ -23,13 +23,18 @@
         		<md-input-container class="md-icon-float md-block">
 			      <!-- Use floating label instead of placeholder -->
 			      <label>Contraseña</label>
-			      <md-icon md-svg-src="images/seguridad.svg" class="name"></md-icon>
+			      <md-icon md-svg-src="images/seguridad-new.svg" class="name"></md-icon>
 			      <input ng-model="vm.entity.pwd" type="password" required>
 			    </md-input-container>
         	</div>
+          <div ng-if="vm.errMsj" layout="row" layout-align="center center">
+            <md-icon md-svg-src="images/ic_error_outline_black_24px.svg" style="color:red; margin-right: 4px; margin-left: 4px;" class="icon-svg-color-red"></md-icon>
+            <p style="color:red; margin-bottom: 2px;">Lo sentimos, {{vm.errMsj}}</p>
+          </div>
+          
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button class="md-raised md-primary" ng-click="vm.login()">LogIn</md-button>
+          <md-button class="md-raised md-primary" ng-click="vm.login()" ng-disabled="!vm.entity.pwd || !vm.entity.usr">LogIn</md-button>
         </md-card-actions>
       </md-card>
 </section>

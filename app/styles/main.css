@@ -141,6 +141,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	mask-size: cover;
 }
 
+.icon-logOut{
+
+}
 
 .icon-cable-power{
 	left:7%;
@@ -185,6 +188,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	top:50%;
 	width: 48px;
 	height: 48px;
+	display: inline-block;
+	mask-size: cover;
+}
+
+.icon-med{
+	position: relative;
+	top:50%;
+	width: 36px;
+	height: 36px;
 	display: inline-block;
 	mask-size: cover;
 }
@@ -365,3 +377,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	fill:#209011;
 }
 
+.icon-svg-color-white > svg{
+	fill:#ffffff;
+}
+
+.icon-svg-color-red > svg{
+	fill:red;
+}

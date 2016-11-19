@@ -28,7 +28,8 @@ angular
             views:{
                 "navBar":{
                   templateUrl: "../views/navBar.html",
-                  controller: "NavBarCtrl"
+                  controller: "NavBarCtrl",
+                  controllerAs: "vm"
                 },
                 "":{
                   templateUrl: "../views/main.html",

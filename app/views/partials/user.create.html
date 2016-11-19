@@ -1,5 +1,5 @@
 <md-dialog class="form-user" aria-label="Agregar Nuevo Dispositivo"  ng-cloak>
-  <form name="deviceForm">
+  <form name="userForm">
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Agregar Nuevo Usuario</h2>
@@ -71,10 +71,10 @@
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-      <md-button ng-click="vmDialog.aceptar(deviceForm)">
+      <md-button ng-click="vmDialog.aceptar()" ng-disabled="userForm.$invalid">
        Aceptar
       </md-button>
-      <md-button ng-click="vmDialog.cancel(deviceForm)" style="margin-right:20px;">
+      <md-button ng-click="vmDialog.cancel()" style="margin-right:20px;">
         Cancelar
       </md-button>
     </md-dialog-actions>

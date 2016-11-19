@@ -22,7 +22,18 @@ router.post('/oauth', function(req, res) {
     });
     console.log(authentication);
     Oauth.findOne({usr: authentication.usr, pwd: authentication.pwd }, function(err, user) {
-      if (err) throw err;
+      if (err) {
+        console.log('ERROR');
+        console.log(err);
+        throw err;
+        res.status(500).send("ALGO SALIO MAL");
+        return false;
+      }
+      if(!user){
+        console.log('user NOT found');
+        res.status(401).send("El usuario o contraseña ingresados no son validos");
+        return false;
+      }
       console.log("user found");
       var token = 'token-' ;
       for(i=10; i>=0;i--){
