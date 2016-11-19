@@ -222,6 +222,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	-webkit-mask-size: cover;
 }
 
+.icon-shield {
+	-webkit-mask-image: url("../images/ic_security_white_24px.svg");
+	mask-image: url("../images/ic_security_white_24px.svg");
+	-webkit-mask-size: cover;
+}
+
 .icon-setting {
 	-webkit-mask-image: url("../images/ic_settings_black_24px.svg");
 	mask-image: url("../images/ic_settings_black_24px.svg");

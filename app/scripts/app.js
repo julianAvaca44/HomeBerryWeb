@@ -109,6 +109,16 @@ angular
               }
             }
           })
+        .state('main.contingencia', {
+          url: '/contingencia',
+          views: {
+              '@main': {
+                  templateUrl: "../views/contingencia.html",
+                  controller: "ContingenciasCtrl",
+                  controllerAs: "vm"
+              }
+            }
+          })
         .state('main.manual', {
           url: '/manual',
           views: {
