@@ -78,7 +78,7 @@
               Estado: {{ confDevice.estado?'Activado':'Desactivado' }}
               </md-checkbox>
             <!--/md-input-container-->
-            <md-button class="btn-green" ng-click="vmDialog.addDeviceToState(confDevice)">Añadir</md-button>
+            <md-button class="btn-green" ng-click="vmDialog.addDeviceToState(confDevice)" ng-disabled="!confDevice.device">Añadir</md-button>
             <md-button ng-click="vmDialog.removeDeviceToState(confDevice)">Cancelar</md-button>
           </div>
         </div>

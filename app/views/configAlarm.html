@@ -1,0 +1,62 @@
+<!--configAlarm-->
+<section>
+	<div class="menu-tablas">
+		<div class="menu-tablas-izq">
+			<div class="menu-tablas-izq">
+				<div class="icon-lg icon-alarm-on icon-black"></div>
+			</div>
+			<div class="menu-tablas-der">
+				<h3><span>Sistema de Alarma</span></h3>	
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+	<div class="line-division"></div>
+	<md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Alarma de intruso</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+	        <div>
+	        	<md-checkbox ng-model="vm.entity.notificaciones" aria-label="Checkbox 1">
+	            Desea recibir notificaciones frente a eventos de la alarma de instrusos : {{vm.entity.notificaciones?'Si':'NO'}}
+	          </md-checkbox>
+	          <p ng-if="vm.entity.notificaciones">Por favor selecciones a los usuarios que desea enviar les notificaciones.</p>
+	        </div>
+          	<div class="body-view" ng-if="vm.entity.notificaciones">
+          		<div class="menu-tablas-izq">
+					<div class="icon-lg icon-profile icon-black"></div>
+				</div>
+				<table class="table table-striped table-hover" >
+					<thead class="thead-inverse">
+						<tr>
+							<th>DNI</th>
+					    	<th>Nombre</th>
+					    	<th>Apellido</th>
+					    	<th>E-Mail</th>
+					    	<th>Telefono</th>
+					    	<th>Perfil</th>
+					    	<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-class="[user.dni==vm.selectedUser.dni?'row-select':'']" ng-repeat="user in vm.entityUsers" ng-click="vm.selectUser(user)">
+							<td>{{user.dni}}</td>
+							<td>{{user.nombre}}</td>
+							<td>{{user.apellido}}</td>
+							<td>{{user.mail}}</td>
+							<td>{{user.telefono}}</td>
+							<td>{{user.perfil}}</td>
+							<td><md-checkbox ng-model="user.notificaciones" aria-label="Checkbox 2"></md-checkbox></td>
+						</tr>
+					</tbody>			
+				</table>
+			</div>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="vm.showAdvanced($event)">Guardar</md-button>
+        </md-card-actions>
+      </md-card>
+</section>

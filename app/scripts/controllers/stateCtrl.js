@@ -107,9 +107,7 @@ angular.module('hBwebApp')
           return false;
         }
         this.configState.pop();
-        if(this.configState.length == 0){
-          this.showBtnNew = true;
-        }
+        this.showBtnNew = true; 
 
       };
 
