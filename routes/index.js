@@ -196,10 +196,16 @@ router.post('/devices', function(req, res) {
     var newDevice = new Device({
         nombre : req.body.nombre,
         descripcion : req.body.descripcion,
-        pin : req.body.pin,
+        Wifi : req.body.Wifi,
         idZona : req.body.idZona,
         tipo : req.body.tipo
+
     });
+    if(!req.body.Wifi){
+      newDevice.pin = req.body.pin;
+    }else{
+      newDevice.nombreWifi = req.body.nombreWifi;
+    }
 
     Device.find({idZona:newDevice.idZona,tipo:newDevice.tipo}, function(err, devices) { 
         if (err) throw err;

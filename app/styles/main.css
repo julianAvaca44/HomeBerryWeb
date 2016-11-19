@@ -67,10 +67,6 @@ md-toolbar{
 	padding-bottom: 1%;
 }
 
-.section-body{
-	margin-bottom: 5%;
-}
-
 footer{
 	    background-color: #212121 !important;
 	    color: white !important;
@@ -145,6 +141,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	mask-size: cover;
 }
 
+
+.icon-cable-power{
+	left:7%;
+	background-color:#ffc734 !important;
+}
+
+.icon-wifi{
+	left:7%;
+	background-color:#209011 !important;
+}
+
 .icon-device-on{
 	left:7%;
 	background-color:#ffc107 !important;
@@ -204,6 +211,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	-webkit-mask-size: cover;
 }
 
+.icon-cable-power{
+	-webkit-mask-image: url("../images/cable-power.svg");
+	mask-image: url("../images/cable-power.svg");
+	-webkit-mask-size: cover;
+}
+
+.icon-wifi{
+	-webkit-mask-image: url("../images/wifi.svg");
+	mask-image: url("../images/wifi.svg");
+	-webkit-mask-size: cover;
+}
+
 .icon-profile {
 	-webkit-mask-image: url("../images/ic_group_white_24px.svg");
 	mask-image: url("../images/ic_group_white_24px.svg");
@@ -225,6 +244,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 .icon-shield {
 	-webkit-mask-image: url("../images/ic_security_white_24px.svg");
 	mask-image: url("../images/ic_security_white_24px.svg");
+	-webkit-mask-size: cover;
+}
+
+.icon-alarm-on {
+	-webkit-mask-image: url("../images/alarm-on.svg");
+	mask-image: url("../images/alarm-on.svg");
 	-webkit-mask-size: cover;
 }
 

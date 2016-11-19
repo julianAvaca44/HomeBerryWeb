@@ -39,10 +39,42 @@
                 </md-option>
               </md-select>
             </md-input-container>
-            <md-input-container class="md-block" flex=30>
-              <label>Pin</label>
-              <input ng-model="vmDialog.entity.pin">
-            </md-input-container>
+          </div>
+          <div class="line-division"></div>
+          <div layout="row" layout-align="space-around center" style="margin-top: 30px;margin-bottom: 50px;">
+            <div>
+              <label>Tipo de conexión</label>
+            </div>
+            <md-radio-group ng-model="vmDialog.entity.Wifi" ng-change="vmDialog.clearInput()">
+              <div class="row">
+                <div flex layout='row' layout-padding layout-align="start center" style="max-height: 50px;">
+                  <md-radio-button flex
+                      ng-value="false"
+                      class="md-primary" >Cableado</md-radio-button>
+                  <div flex>
+                    <md-input-container class="md-block">
+                      <label>Pin</label>
+                      <input ng-model="vmDialog.entity.pin" ng-disabled="vmDialog.entity.Wifi" ng-required="!vmDialog.entity.Wifi">
+                    </md-input-container>
+                  </div>
+                </div>
+                <div flex layout='row' layout-padding layout-align="start center" style="max-height: 50px;">
+                  <md-radio-button flex
+                      ng-value="true"
+                      class="md-primary" >Wifi</md-radio-button>
+                   <div flex>
+                    <md-input-container class="md-block" >
+                      <label>Nombre de Wifi</label>
+                      <input ng-model="vmDialog.entity.nombreWifi" ng-disabled="!vmDialog.entity.Wifi" ng-required="vmDialog.entity.Wifi">
+                    </md-input-container>        
+                  </div>
+                </div>
+              </div>
+            </md-radio-group>
+            <md-divider></md-divider>
+
+
+            
           </div>
         <!--  FIN DEL FORMULARIO  -->
         <div class="line-division"></div> 

@@ -109,6 +109,16 @@ angular
               }
             }
           })
+        .state('main.configAlarm', {
+          url: '/config-alarma',
+          views: {
+              '@main': {
+                  templateUrl: "../views/configAlarm.html",
+                  controller: "ConfigAlarmCtrl",
+                  controllerAs: "vm"
+              }
+            }
+          })
         .state('main.contingencia', {
           url: '/contingencia',
           views: {

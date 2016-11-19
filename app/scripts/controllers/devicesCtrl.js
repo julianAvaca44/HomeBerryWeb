@@ -148,6 +148,15 @@ angular.module('hBwebApp')
         });  
       };
       this.getTypeDevices();
+
+      this.clearInput = function(){
+          if(this.entity.Wifi){
+            this.entity.pin = undefined;
+          }else{
+            this.entity.nombreWifi = undefined;
+          }
+      }
+
     }
 
     this.selectDevice = function(device){

@@ -27,7 +27,8 @@
 			    	<th>Tipo</th>
 			    	<th>Zona</th>
 			    	<th>Estado</th>
-			    	<th>Pin</th>
+			    	<th>Tipo de conexion</th>
+			    	<th>Pin / Wifi</th>
 			    	<th>Descripción</th>
 			    	<th>Eliminar</th>
 				</tr>
@@ -40,7 +41,8 @@
 					<td>{{device.tipo}}</td>
 					<td>{{device.idZona}}</td>
 					<td>{{device.estado}}</td>
-					<td>{{device.pin}}</td>
+					<td><div ng-class="[device.Wifi?'icon icon-wifi icon-black':'icon icon-cable-power icon-black']"></div></td>
+					<td>{{device.Wifi?device.nombreWifi:device.pin}}</td>
 					<td>{{device.descripcion}}</td>
 					<td>
 						<div class="icon icon-delete icon-red" ng-click="vm.deleteDevice(device)">
